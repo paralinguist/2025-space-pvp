@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccgemfou2b2ll"]
+
+[ext_resource type="PackedScene" uid="uid://b7hp126j04b4b" path="res://Scenes/test_ship.tscn" id="1_3dogw"]
+[ext_resource type="Texture2D" uid="uid://ui0dp6xs3cs3" path="res://Assets/image5.jpg" id="2_r5l72"]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="TestShip" parent="." instance=ExtResource("1_3dogw")]
+position = Vector2(386, 387)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -4096
+position = Vector2(566, 412)
+scale = Vector2(0.725, 0.725)
+texture = ExtResource("2_r5l72")
