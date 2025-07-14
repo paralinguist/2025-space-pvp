@@ -6,7 +6,12 @@
 [node name="TestScene" type="Node2D"]
 
 [node name="TestShip" parent="." instance=ExtResource("1_3dogw")]
-position = Vector2(386, 387)
+position = Vector2(576, 500)
+scale = Vector2(0.615, 0.615)
+
+[node name="TestShip2" parent="." instance=ExtResource("1_3dogw")]
+position = Vector2(576, 126)
+scale = Vector2(0.615, -0.615)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -4096

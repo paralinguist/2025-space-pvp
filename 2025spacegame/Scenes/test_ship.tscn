@@ -1,30 +1,33 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7hp126j04b4b"]
+[gd_scene load_steps=6 format=3 uid="uid://b7hp126j04b4b"]
 
 [ext_resource type="PackedScene" uid="uid://cb8x43y03yld0" path="res://Scenes/Modules/engine.tscn" id="1_5mm7q"]
+[ext_resource type="Script" uid="uid://h35ovikoq1pt" path="res://Scripts/ship.gd" id="1_x3s1d"]
 [ext_resource type="PackedScene" uid="uid://bawyb4qw2s7et" path="res://Scenes/Modules/science.tscn" id="2_t2t7e"]
 [ext_resource type="PackedScene" uid="uid://dd8svo8mdvsfw" path="res://Scenes/Modules/laser.tscn" id="3_x3s1d"]
 [ext_resource type="Texture2D" uid="uid://c15h7gc4pojbw" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_003.png" id="4_t2t7e"]
 
 [node name="TestShip" type="Node2D"]
+script = ExtResource("1_x3s1d")
 
 [node name="Engine" parent="." instance=ExtResource("1_5mm7q")]
+position = Vector2(-25.9905, 0)
 
 [node name="Science" parent="." instance=ExtResource("2_t2t7e")]
-position = Vector2(52, 0)
+position = Vector2(26.0095, 0)
 
 [node name="Laser" parent="." instance=ExtResource("3_x3s1d")]
-position = Vector2(-52, 0)
+position = Vector2(-77.9905, 0)
 
 [node name="Laser2" parent="." instance=ExtResource("3_x3s1d")]
-position = Vector2(104, 0)
+position = Vector2(78.0095, 0)
 
 [node name="LeftWing" type="Sprite2D" parent="."]
-position = Vector2(-78, 0)
+position = Vector2(-103.991, 0)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_t2t7e")
 flip_h = true
 
 [node name="RightWing" type="Sprite2D" parent="."]
-position = Vector2(130, 0)
+position = Vector2(104.009, 0)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_t2t7e")
