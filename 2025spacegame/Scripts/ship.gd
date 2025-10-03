@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 		move(-1)
 	if Input.is_action_just_pressed("ui_right"):
 		move(1)
+
 #dir should be -1 for left and 1 for right
 func move(dir:int):
 	position.x += dir*GRID_DISTANCE
