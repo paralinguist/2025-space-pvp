@@ -60,6 +60,9 @@ func add_shield():
 func take_damage(dmg:float):
 	hp -= dmg*100
 	if hp <= 0.0:
+		UI.visible = true
+		UI.get_node("Control/End").visible = true
+		UI.get_node("Control/End/Label").text = win_message
 		for c in get_children():
 			if c is ShipModule:
 				c.die()
