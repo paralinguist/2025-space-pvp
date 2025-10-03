@@ -1,4 +1,4 @@
-extends Node2D
+class_name Ship extends Node2D
 
 const shield  = preload("res://Scenes/shield.tscn")
 const GRID_DISTANCE = 32

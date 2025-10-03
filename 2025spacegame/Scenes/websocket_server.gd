@@ -1,5 +1,4 @@
-class_name WebSocketServer
-extends Node
+class_name WebSocketServer extends Node
 class PendingPeer:
 	var connect_time: int
 	var tcp: StreamPeerTCP
@@ -7,9 +6,9 @@ class PendingPeer:
 	var ws: WebSocketPeer
 	
 	func _init(p_tcp: StreamPeerTCP) -> void:
-		var tcp: StreamPeerTCP = p_tcp
-		var connection: StreamPeerTCP = p_tcp
-		var connect_time: int = Time.get_ticks_msec()
+		tcp = p_tcp
+		connection = p_tcp
+		connect_time = Time.get_ticks_msec()
 
 
 const PORT: int = 9876
@@ -23,6 +22,10 @@ var pending_peers: Array[PendingPeer] = []
 var peers: Dictionary
 var clients: Dictionary
 
+@export var TechShip: Ship
+@export var RetroShip: Ship
+
+
 @export var handshake_timeout := 3000
 
 signal message_received(peer_id: int, message: String)
@@ -34,6 +37,11 @@ signal action(role: String, team: int, action: String)
 func log_message(message: String) -> void:
 	var time := "[color=#aaaaaa] %s |[/color] " % Time.get_time_string_from_system()
 	print(time + message + "\n")
+
+func _ready() -> void:
+	if tcp_server.listen(PORT) != OK:
+		log_message("Unable to start server.")
+		set_process(false)
 	
 func _process(_delta: float) -> void:
 	poll()
@@ -52,7 +60,7 @@ func _connect_pending(p: PendingPeer) -> bool:
 			client_connected.emit(id)
 			print("Client connected: " + str(id))
 			return true #Successful connection
-		elif state == WebSocketPeer.STATE_CONNECTING:
+		elif state != WebSocketPeer.STATE_CONNECTING:
 			return true #Failed connection
 		return false #Connection still in progress
 	elif p.tcp.get_status() != StreamPeerTCP.STATUS_CONNECTED:
@@ -70,21 +78,24 @@ func get_message(peer_id: int) -> String:
 	var pkt: PackedByteArray = socket.get_packet()
 	if socket.was_string_packet():
 		var message = pkt.get_string_from_utf8()
-		if message.begins_with("join|"):
-			var client_role = message.right(len(message) - 5)
-			emit_signal("new_client", client_role)
-			print(client_role + "has joined!")
-			clients[peer_id] = client_role
-		else:
-			var ship_instruction = JSON.new()
-			if ship_instruction.parse(message) == OK:
-				var instruction = ship_instruction.data
+		var ship_instruction = JSON.new()
+		if ship_instruction.parse(message) == OK:
+			var instruction = ship_instruction.data
+			print(instruction)
+			if instruction["action"] == "join":
+				print(instruction["team"] + " " + instruction["role"] + " has joined!" + "(API:" + instruction["version"] + ")")
+				clients[peer_id] = {"team":instruction["team"], "role":instruction["role"]}
+				emit_signal("new_client", clients[peer_id])
+			elif instruction["action"] == "move":
+				if instruction["direction"] == "right":
+					print("move tech right")
+					if clients[peer_id]["team"] == "tech":
+						TechShip.move(1)
 	return "OK"
 	
 func poll() -> void:
 	if not tcp_server.is_listening():
 		return
-
 	while tcp_server.is_connection_available():
 		var conn: StreamPeerTCP = tcp_server.take_connection()
 		assert(conn != null)

@@ -6,11 +6,11 @@
 
 [node name="TestScene" type="Node2D"]
 
-[node name="TestShip" parent="." instance=ExtResource("1_3dogw")]
+[node name="RetroShip" parent="." instance=ExtResource("1_3dogw")]
 position = Vector2(576, 500)
 scale = Vector2(0.615, 0.615)
 
-[node name="TestShip2" parent="." instance=ExtResource("1_3dogw")]
+[node name="TechShip" parent="." instance=ExtResource("1_3dogw")]
 position = Vector2(576, 126)
 scale = Vector2(0.615, -0.615)
 
@@ -20,5 +20,7 @@ position = Vector2(566, 412)
 scale = Vector2(0.725, 0.725)
 texture = ExtResource("2_r5l72")
 
-[node name="WebSocketServer" type="Node" parent="."]
+[node name="WebSocketServer" type="Node" parent="." node_paths=PackedStringArray("TechShip", "RetroShip")]
 script = ExtResource("3_50ct6")
+TechShip = NodePath("../TechShip")
+RetroShip = NodePath("../RetroShip")
