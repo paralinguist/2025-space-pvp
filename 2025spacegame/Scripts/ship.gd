@@ -43,11 +43,11 @@ func shoot(idx:int):
 		laser_count += 1
 
 func get_weapons():
-	var num_weapons = 0
+	var weapons = []
 	for c in get_children():
 		if c is Shooter:
-			num_weapons += 1
-	return num_weapons
+			weapons.append(c.weapon_type)
+	return weapons
 
 func reposition_shields():
 	for s in range($ShieldSpot.get_child_count()):

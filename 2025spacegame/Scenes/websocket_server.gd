@@ -85,6 +85,8 @@ func get_message(peer_id: int) -> String:
 				print(instruction["team"] + " " + instruction["role"] + " has joined!" + "(API:" + instruction["version"] + ")")
 				clients[peer_id] = {"team":instruction["team"], "role":instruction["role"]}
 				emit_signal("new_client", clients[peer_id])
+				if instruction["role"] == "weapons":
+					send_weapon_info(peer_id)
 			elif instruction["action"] == "move":
 				if instruction["direction"] == "right":
 					print("move tech right")
@@ -153,7 +155,13 @@ func send(peer_id: int, message: String) -> int:
 		return socket.send_text(message)
 	return socket.send(var_to_bytes(message))
 
-func send_weapon_info(peer_id: int, data: String):
-	var message = {"type":"weapon_info", "data":data}
+func send_weapon_info(peer_id: int):
+	var team = clients[peer_id]["team"]
+	var weapons = []
+	if team == "tech":
+		weapons = TechShip.get_weapons()
+	else:
+		weapons = RetroShip.get_weapons()
+	var message = {"type":"weapon_info", "data":weapons}
 	send(peer_id, JSON.stringify(message))
 	

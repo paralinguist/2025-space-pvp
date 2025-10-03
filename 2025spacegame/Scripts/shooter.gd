@@ -9,7 +9,6 @@ func _ready() -> void:
 	if randf() < -0.5:
 		shoot()
 
-
 func _on_laser_timer_timeout() -> void:
 	$LaserRayCast.global_position = shot_from
 	$LaserRayCast.force_raycast_update()
