@@ -24,7 +24,7 @@ func spawn() -> void:
 		new_components[i].visible = false
 func start():
 	for c in get_children():
-		if c is Ship:
+		if c is ShipModule:
 			c.visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
