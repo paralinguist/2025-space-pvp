@@ -1,1 +1,1 @@
-extends ShipModule
+class_name Science extends ShipModule

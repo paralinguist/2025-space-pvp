@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://rq28rb1t8yan"]
 
-[ext_resource type="Script" uid="uid://cjc2ak2xhigsv" path="res://Scripts/laser_bullet.gd" id="1_3o6ko"]
+[ext_resource type="Script" uid="uid://cjc2ak2xhigsv" path="res://Scripts/bullet.gd" id="1_3o6ko"]
 [ext_resource type="Shader" uid="uid://b7yl6dl3ejkh7" path="res://laser.gdshader" id="1_wsec8"]
 
 [sub_resource type="Gradient" id="Gradient_ffxur"]
@@ -30,5 +30,13 @@ end_cap_mode = 2
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(0, 20)
 target_position = Vector2(0, -40)
+collision_mask = 3
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

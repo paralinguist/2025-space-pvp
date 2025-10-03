@@ -4,7 +4,7 @@ const shield  = preload("res://Scenes/shield.tscn")
 const GRID_DISTANCE = 32
 var left_size := 113*0.615
 var right_size := 113*0.615
-
+var hp = 100.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in range(randi_range(3, 6)):
@@ -17,6 +17,8 @@ func _process(delta: float) -> void:
 		move(-1)
 	if Input.is_action_just_pressed("ui_right"):
 		move(1)
+	$HPBar.value = hp
+	$HPBar.modulate = Color.from_hsv(hp/280.0, 0.8, 0.9, 1.0)
 
 #dir should be -1 for left and 1 for right
 func move(dir:int):
@@ -28,10 +30,10 @@ func move(dir:int):
 func shoot(idx:int):
 	var laser_count := 0
 	for c in get_children():
-		if c is Laser:
+		if c is Shooter:
 			if idx == laser_count:
 				if not c.deactivated:
-					c.shoot_laser()
+					c.shoot()
 				break
 		laser_count += 1
 
@@ -40,6 +42,17 @@ func reposition_shields():
 		$ShieldSpot.get_child(s).position.y = s*-20
 
 func add_shield():
-	var new_shield := shield.instantiate()
-	$ShieldSpot.add_child(new_shield)
-	reposition_shields()
+	for c in get_children():
+		if c is Science:
+			if not c.deactivated:
+				var new_shield := shield.instantiate()
+				$ShieldSpot.add_child(new_shield)
+				reposition_shields()
+			break
+
+func take_damage(dmg:float):
+	hp -= dmg*100
+	if hp <= 0.0:
+		for c in get_children():
+			if c is ShipModule:
+				c.die()

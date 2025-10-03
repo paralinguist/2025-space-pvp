@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b7hp126j04b4b" path="res://Scenes/test_ship.tscn" id="1_3dogw"]
 [ext_resource type="Texture2D" uid="uid://ui0dp6xs3cs3" path="res://Assets/image5.jpg" id="2_r5l72"]
-[ext_resource type="Script" uid="uid://wmmjjexbv6tq" path="res://Scenes/websocket_server.gd" id="3_50ct6"]
+[ext_resource type="Script" path="res://Scenes/websocket_server.gd" id="3_50ct6"]
 
 [node name="TestScene" type="Node2D"]
 
@@ -17,7 +17,7 @@ scale = Vector2(0.615, -0.615)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -4096
 position = Vector2(566, 412)
-scale = Vector2(0.725, 0.725)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_r5l72")
 
 [node name="WebSocketServer" type="Node" parent="."]

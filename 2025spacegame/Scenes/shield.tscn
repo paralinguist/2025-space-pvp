@@ -8,6 +8,8 @@ size = Vector2(328, 56)
 
 [node name="Shield" type="Area2D"]
 scale = Vector2(3, 1)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_oux8c")
 
 [node name="Glow" type="Sprite2D" parent="."]
