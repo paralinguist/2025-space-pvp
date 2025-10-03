@@ -104,4 +104,8 @@ target_position = Vector2(0, -2000)
 collide_with_areas = true
 collide_with_bodies = false
 
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [connection signal="timeout" from="LaserTimer" to="." method="_on_laser_timer_timeout"]
