@@ -10,5 +10,5 @@ func _on_start_pressed() -> void:
 	$UI/Control/Start.visible = false
 	$UI.visible = false
 	game_started = true
-	$RetroShip.spawn()
-	$TechShip.spawn()
+	$RetroShip.start()
+	$TechShip.start()

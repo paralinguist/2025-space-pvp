@@ -12,6 +12,8 @@ const science = preload("res://Scenes/Modules/science.tscn")
 const laser = preload("res://Scenes/Modules/laser.tscn")
 const missile = preload("res://Scenes/Modules/missile.tscn")
 
+func _ready():
+	spawn()
 # Called when the node enters the scene tree for the first time.
 func spawn() -> void:
 	var new_components : Array[ShipModule] = [engine.instantiate(), science.instantiate(), laser.instantiate(), laser.instantiate(), missile.instantiate()]
@@ -19,6 +21,11 @@ func spawn() -> void:
 	for i in range(5):
 		add_child(new_components[i])
 		new_components[i].position = Vector2(52*i-104, 0)
+		new_components[i].visible = false
+func start():
+	for c in get_children():
+		if c is Ship:
+			c.visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
