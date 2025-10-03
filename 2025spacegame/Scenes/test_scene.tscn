@@ -44,7 +44,6 @@ TechShip = NodePath("../TechShip")
 RetroShip = NodePath("../RetroShip")
 
 [node name="UI" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Control" type="Control" parent="UI"]
 layout_mode = 3
@@ -55,7 +54,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_ak5v8")
 
-[node name="VB" type="VBoxContainer" parent="UI/Control"]
+[node name="End" type="VBoxContainer" parent="UI/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -69,13 +69,29 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="UI/Control/VB"]
+[node name="Label" type="Label" parent="UI/Control/End"]
 layout_mode = 2
 text = "Tech Ship Survived!"
 label_settings = SubResource("LabelSettings_x033f")
 
-[node name="Button" type="Button" parent="UI/Control/VB"]
+[node name="Button" type="Button" parent="UI/Control/End"]
 layout_mode = 2
 text = "Again?"
 
-[connection signal="pressed" from="UI/Control/VB/Button" to="." method="_on_button_pressed"]
+[node name="Start" type="Button" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.5
+offset_top = -46.0
+offset_right = 107.5
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start"
+
+[connection signal="pressed" from="UI/Control/End/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="UI/Control/Start" to="." method="_on_start_pressed"]
