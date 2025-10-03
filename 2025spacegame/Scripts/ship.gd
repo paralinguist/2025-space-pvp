@@ -1,5 +1,6 @@
 class_name Ship extends Node2D
-
+@export var UI: CanvasLayer
+@export var win_message := "Tech Ship Survived"
 const shield  = preload("res://Scenes/shield.tscn")
 const GRID_DISTANCE = 32
 var left_size := 113*0.615

@@ -21,13 +21,16 @@ shadow_offset = Vector2(2, 2)
 [node name="TestScene" type="Node2D"]
 script = ExtResource("1_ak5v8")
 
-[node name="RetroShip" parent="." instance=ExtResource("1_3dogw")]
+[node name="RetroShip" parent="." node_paths=PackedStringArray("UI") instance=ExtResource("1_3dogw")]
 position = Vector2(576, 500)
 scale = Vector2(0.615, 0.615)
+UI = NodePath("../UI")
+win_message = "Retro  Ship Survived"
 
-[node name="TechShip" parent="." instance=ExtResource("1_3dogw")]
+[node name="TechShip" parent="." node_paths=PackedStringArray("UI") instance=ExtResource("1_3dogw")]
 position = Vector2(576, 126)
 scale = Vector2(0.615, -0.615)
+UI = NodePath("../UI")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -4096
