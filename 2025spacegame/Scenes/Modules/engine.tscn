@@ -55,3 +55,6 @@ texture = ExtResource("5_t3408")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lpx0w")
+
+[node name="ShieldSpot" type="Node2D" parent="."]
+position = Vector2(0, -90)

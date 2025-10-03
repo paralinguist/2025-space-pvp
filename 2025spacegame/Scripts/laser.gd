@@ -1,9 +1,10 @@
 class_name Laser extends ShipModule
 
-var laserspeed := 600
+const LaserBullet = preload("res://Scenes/laser_bullet.tscn")
+
 var shot_from := Vector2.ZERO
 func _ready() -> void:
-	$LaserTimer.wait_time *= 600/laserspeed
+	shoot_laser()
 
 
 func _on_laser_timer_timeout() -> void:
@@ -15,7 +16,7 @@ func _on_laser_timer_timeout() -> void:
 
 func shoot_laser():
 	if $Cooldown.is_stopped():
-		$LaserParticles.emitting = true
-		$LaserTimer.start()
+		var new_bullet := LaserBullet.instantiate()
+		add_child(new_bullet)
+		new_bullet.position = Vector2(0, -110)
 		$Cooldown.is_stopped()
-		shot_from = $LaserParticles.global_position

@@ -31,3 +31,6 @@ flip_h = true
 position = Vector2(104.009, 0)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_t2t7e")
+
+[node name="ShieldSpot" type="Node2D" parent="."]
+position = Vector2(0, -120)

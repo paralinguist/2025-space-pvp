@@ -1,12 +1,14 @@
 extends Node2D
 
+const shield  = preload("res://Scenes/shield.tscn")
 const GRID_DISTANCE = 32
 var left_size := 113*0.615
 var right_size := 113*0.615
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	for i in range(randi_range(3, 6)):
+		add_shield()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -32,3 +34,12 @@ func shoot(idx:int):
 					c.shoot_laser()
 				break
 		laser_count += 1
+
+func reposition_shields():
+	for s in range($ShieldSpot.get_child_count()):
+		$ShieldSpot.get_child(s).position.y = s*-20
+
+func add_shield():
+	var new_shield := shield.instantiate()
+	$ShieldSpot.add_child(new_shield)
+	reposition_shields()
