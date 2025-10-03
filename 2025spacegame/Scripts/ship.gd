@@ -11,7 +11,6 @@ func _ready() -> void:
 	for i in range(randi_range(3, 6)):
 		add_shield()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_left"):
@@ -39,11 +38,11 @@ func shoot(idx:int):
 		laser_count += 1
 
 func get_weapons():
-	var num_weapons = 0
+	var weapons = []
 	for c in get_children():
 		if c is Shooter:
-			num_weapons += 1
-	return num_weapons
+			weapons.append(c.weapon_type)
+	return weapons
 
 func reposition_shields():
 	for s in range($ShieldSpot.get_child_count()):
