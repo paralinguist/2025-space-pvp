@@ -2,6 +2,7 @@ class_name ShipModule extends Area2D
 
 var deactivated := false
 var respawn_timer : Timer = null
+@export var particles: GPUParticles2D
 
 func _process(delta: float):
 	if deactivated:
@@ -27,9 +28,11 @@ func respawn():
 
 
 func die():
+	if particles:
+		particles.emitting = true
 	var death_tween := get_tree().create_tween()
 	death_tween.set_parallel(true)
-	death_tween.tween_property(self, "rotation", (randi_range(0, 1)*2-1)*randf_range(40, 100), 4)
+	death_tween.tween_property(self, "rotation", (randi_range(0, 1)*2-1)*randf_range(40, 70), 4)
 	death_tween.tween_property(self, "position", Vector2.from_angle(randf()*TAU)*randf_range(600, 3000), 4)
 	death_tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.0), 4)
 	death_tween.chain().tween_callback(queue_free)

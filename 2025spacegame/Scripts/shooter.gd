@@ -1,10 +1,13 @@
 class_name Shooter extends ShipModule
 
 @export var bullet_scene : String = "laser_bullet"# = preload("res://Scenes/laser_bullet.tscn")
+@export var weapon_type : String = "laser"
 @onready var LaserBullet = load("res://Scenes/"+bullet_scene+".tscn")
 var shot_from := Vector2.ZERO
 func _ready() -> void:
-	shoot()
+	randomize()
+	if randf() < -0.5:
+		shoot()
 
 
 func _on_laser_timer_timeout() -> void:

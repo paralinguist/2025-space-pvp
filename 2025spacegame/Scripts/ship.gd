@@ -1,14 +1,24 @@
 class_name Ship extends Node2D
-
+@export var UI : CanvasLayer
+@export var win_message : String = "Tech Ship Survived"
 const shield  = preload("res://Scenes/shield.tscn")
 const GRID_DISTANCE = 32
 var left_size := 113*0.615
 var right_size := 113*0.615
 var hp = 100.0
+
+const engine = preload("res://Scenes/Modules/engine.tscn")
+const science = preload("res://Scenes/Modules/science.tscn")
+const laser = preload("res://Scenes/Modules/laser.tscn")
+const missile = preload("res://Scenes/Modules/missile.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for i in range(randi_range(3, 6)):
-		add_shield()
+	var new_components : Array[ShipModule] = [engine.instantiate(), science.instantiate(), laser.instantiate(), laser.instantiate(), missile.instantiate()]
+	new_components.shuffle()
+	for i in range(5):
+		add_child(new_components[i])
+		new_components[i].position = Vector2(52*i-104, 0)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,6 +63,11 @@ func add_shield():
 func take_damage(dmg:float):
 	hp -= dmg*100
 	if hp <= 0.0:
+		UI.visible = true
+		UI.get_node("Control/VB/Label").text = win_message
 		for c in get_children():
 			if c is ShipModule:
 				c.die()
+			else:
+				c.queue_free()
+		set_process(false)

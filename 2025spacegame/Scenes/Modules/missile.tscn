@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cv1qvu1uscksb"]
+[gd_scene load_steps=13 format=3 uid="uid://cv1qvu1uscksb"]
 
 [ext_resource type="Script" uid="uid://5d1sjbqxux7e" path="res://Scripts/shooter.gd" id="1_qhn7b"]
 [ext_resource type="Texture2D" uid="uid://dqxq6koyxcc68" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_016.png" id="2_ore0m"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://dx2xsjxwts86j" path="res://Scenes/Modules/missile.gdshader" id="4_ore0m"]
 [ext_resource type="Texture2D" uid="uid://nox7pu4eon6k" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_018.png" id="4_qhn7b"]
 [ext_resource type="Texture2D" uid="uid://bpigsecdx1o2t" path="res://Assets/PNG/Sprites X2/Station/spaceStation_005.png" id="5_gty6x"]
+[ext_resource type="Texture2D" uid="uid://d2wnivcsihaxs" path="res://Assets/PNG/Sprites X2/Effects/spaceEffects_009.png" id="7_4jknp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4jknp"]
 shader = ExtResource("4_ore0m")
@@ -13,9 +14,27 @@ shader = ExtResource("4_ore0m")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rr6fe"]
 size = Vector2(32, 104)
 
-[node name="Missile" type="Area2D"]
+[sub_resource type="Gradient" id="Gradient_qglw2"]
+offsets = PackedFloat32Array(0, 0.110656, 0.803279, 1)
+colors = PackedColorArray(1, 0.956863, 0.333333, 1, 1, 0.736506, 0.275221, 1, 1, 0.11, 0.11, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gty6x"]
+gradient = SubResource("Gradient_qglw2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5ueyg"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 303.03
+angular_velocity_min = -550.0
+angular_velocity_max = 550.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_gty6x")
+
+[node name="Missile" type="Area2D" node_paths=PackedStringArray("particles")]
 script = ExtResource("1_qhn7b")
 bullet_scene = "missile_bullet"
+weapon_type = "missile"
+particles = NodePath("Explosion")
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -68,3 +87,8 @@ shape = SubResource("RectangleShape2D_rr6fe")
 [node name="Cooldown" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
+
+[node name="Explosion" type="GPUParticles2D" parent="."]
+emitting = false
+texture = ExtResource("7_4jknp")
+process_material = SubResource("ParticleProcessMaterial_5ueyg")

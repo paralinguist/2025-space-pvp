@@ -1,18 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccgemfou2b2ll"]
+[gd_scene load_steps=8 format=3 uid="uid://ccgemfou2b2ll"]
 
 [ext_resource type="PackedScene" uid="uid://b7hp126j04b4b" path="res://Scenes/test_ship.tscn" id="1_3dogw"]
+[ext_resource type="Script" uid="uid://jhf0sypt6a0h" path="res://Scripts/main.gd" id="1_ak5v8"]
 [ext_resource type="Texture2D" uid="uid://ui0dp6xs3cs3" path="res://Assets/image5.jpg" id="2_r5l72"]
-[ext_resource type="Script" path="res://Scenes/websocket_server.gd" id="3_50ct6"]
+[ext_resource type="Script" uid="uid://wmmjjexbv6tq" path="res://Scenes/websocket_server.gd" id="3_50ct6"]
+[ext_resource type="FontFile" uid="uid://ddcavhli5oec3" path="res://Assets/Tektur-Regular.ttf" id="4_hb2xm"]
+
+[sub_resource type="Theme" id="Theme_ak5v8"]
+default_font = ExtResource("4_hb2xm")
+default_font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_x033f"]
+font_size = 64
+outline_size = 14
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 30
+shadow_color = Color(0.6, 0, 1, 0.380392)
+shadow_offset = Vector2(2, 2)
 
 [node name="TestScene" type="Node2D"]
+script = ExtResource("1_ak5v8")
 
-[node name="RetroShip" parent="." instance=ExtResource("1_3dogw")]
+[node name="RetroShip" parent="." node_paths=PackedStringArray("UI") instance=ExtResource("1_3dogw")]
 position = Vector2(576, 500)
 scale = Vector2(0.615, 0.615)
+UI = NodePath("../UI")
+win_message = "Retro Ship Survived"
 
-[node name="TechShip" parent="." instance=ExtResource("1_3dogw")]
+[node name="TechShip" parent="." node_paths=PackedStringArray("UI") instance=ExtResource("1_3dogw")]
 position = Vector2(576, 126)
 scale = Vector2(0.615, -0.615)
+UI = NodePath("../UI")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -4096
@@ -24,3 +42,40 @@ texture = ExtResource("2_r5l72")
 script = ExtResource("3_50ct6")
 TechShip = NodePath("../TechShip")
 RetroShip = NodePath("../RetroShip")
+
+[node name="UI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ak5v8")
+
+[node name="VB" type="VBoxContainer" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -20.0
+offset_right = 75.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/Control/VB"]
+layout_mode = 2
+text = "Tech Ship Survived!"
+label_settings = SubResource("LabelSettings_x033f")
+
+[node name="Button" type="Button" parent="UI/Control/VB"]
+layout_mode = 2
+text = "Again?"
+
+[connection signal="pressed" from="UI/Control/VB/Button" to="." method="_on_button_pressed"]

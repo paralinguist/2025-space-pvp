@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cb8x43y03yld0"]
+[gd_scene load_steps=12 format=3 uid="uid://cb8x43y03yld0"]
 
 [ext_resource type="Script" uid="uid://cnlrj6cvkuba4" path="res://Scripts/engine.gd" id="1_iguxc"]
 [ext_resource type="Texture2D" uid="uid://c2je0ut3hjdil" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_027.png" id="1_m7gxp"]
@@ -6,12 +6,30 @@
 [ext_resource type="Texture2D" uid="uid://css12ntxjdlxs" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_021.png" id="3_88va6"]
 [ext_resource type="Texture2D" uid="uid://bpigsecdx1o2t" path="res://Assets/PNG/Sprites X2/Station/spaceStation_005.png" id="4_m7gxp"]
 [ext_resource type="Texture2D" uid="uid://hx7y3x2wrpq3" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_008.png" id="5_t3408"]
+[ext_resource type="Texture2D" uid="uid://d2wnivcsihaxs" path="res://Assets/PNG/Sprites X2/Effects/spaceEffects_009.png" id="7_88va6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lpx0w"]
 size = Vector2(32, 64)
 
-[node name="Engine" type="Area2D"]
+[sub_resource type="Gradient" id="Gradient_b56ab"]
+offsets = PackedFloat32Array(0, 0.110656, 0.803279, 1)
+colors = PackedColorArray(1, 0.956863, 0.333333, 1, 1, 0.736506, 0.275221, 1, 1, 0.11, 0.11, 1, 1, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t3408"]
+gradient = SubResource("Gradient_b56ab")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lpx0w"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 303.03
+angular_velocity_min = -550.0
+angular_velocity_max = 550.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_t3408")
+
+[node name="Engine" type="Area2D" node_paths=PackedStringArray("particles")]
 script = ExtResource("1_iguxc")
+particles = NodePath("Explosion")
 
 [node name="Body" type="Node2D" parent="."]
 
@@ -58,3 +76,8 @@ shape = SubResource("RectangleShape2D_lpx0w")
 
 [node name="ShieldSpot" type="Node2D" parent="."]
 position = Vector2(0, -90)
+
+[node name="Explosion" type="GPUParticles2D" parent="."]
+emitting = false
+texture = ExtResource("7_88va6")
+process_material = SubResource("ParticleProcessMaterial_lpx0w")
