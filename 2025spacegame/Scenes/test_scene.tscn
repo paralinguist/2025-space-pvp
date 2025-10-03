@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ccgemfou2b2ll"]
 
 [ext_resource type="PackedScene" uid="uid://b7hp126j04b4b" path="res://Scenes/test_ship.tscn" id="1_3dogw"]
-[ext_resource type="Script" uid="uid://jhf0sypt6a0h" path="res://Scripts/main.gd" id="1_ak5v8"]
+[ext_resource type="Script" uid="uid://bcr45us05q8fu" path="res://Scripts/main.gd" id="1_ak5v8"]
 [ext_resource type="Texture2D" uid="uid://ui0dp6xs3cs3" path="res://Assets/image5.jpg" id="2_r5l72"]
 [ext_resource type="Script" uid="uid://wmmjjexbv6tq" path="res://Scenes/websocket_server.gd" id="3_50ct6"]
 [ext_resource type="FontFile" uid="uid://ddcavhli5oec3" path="res://Assets/Tektur-Regular.ttf" id="4_hb2xm"]
@@ -21,16 +21,13 @@ shadow_offset = Vector2(2, 2)
 [node name="TestScene" type="Node2D"]
 script = ExtResource("1_ak5v8")
 
-[node name="RetroShip" parent="." node_paths=PackedStringArray("UI") instance=ExtResource("1_3dogw")]
+[node name="RetroShip" parent="." instance=ExtResource("1_3dogw")]
 position = Vector2(576, 500)
 scale = Vector2(0.615, 0.615)
-UI = NodePath("../UI")
-win_message = "Retro Ship Survived"
 
-[node name="TechShip" parent="." node_paths=PackedStringArray("UI") instance=ExtResource("1_3dogw")]
+[node name="TechShip" parent="." instance=ExtResource("1_3dogw")]
 position = Vector2(576, 126)
 scale = Vector2(0.615, -0.615)
-UI = NodePath("../UI")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -4096

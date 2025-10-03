@@ -81,7 +81,6 @@ func get_message(peer_id: int) -> String:
 		var ship_instruction = JSON.new()
 		if ship_instruction.parse(message) == OK:
 			var instruction = ship_instruction.data
-			print(instruction)
 			if instruction["action"] == "join":
 				print(instruction["team"] + " " + instruction["role"] + " has joined!" + "(API:" + instruction["version"] + ")")
 				clients[peer_id] = {"team":instruction["team"], "role":instruction["role"]}
@@ -91,6 +90,10 @@ func get_message(peer_id: int) -> String:
 					print("move tech right")
 					if clients[peer_id]["team"] == "tech":
 						TechShip.move(1)
+				else:
+					print("move tech left")
+					if clients[peer_id]["team"] == "tech":
+						TechShip.move(-1)
 	return "OK"
 	
 func poll() -> void:
@@ -124,7 +127,7 @@ func poll() -> void:
 			client_disconnected.emit(id)
 			to_remove.append(id)
 			if id in clients:
-				log_message(clients[id] + " has disconnected")
+				log_message(clients[id]["team"] + clients[id]["role"] + " has disconnected")
 				clients.erase(id)
 			continue
 		
@@ -134,3 +137,23 @@ func poll() -> void:
 	for r: int in to_remove:
 		peers.erase(r)
 	to_remove.clear()
+
+func send(peer_id: int, message: String) -> int:
+	var type := typeof(message)
+	if peer_id <= 0:
+		for id: int in peers:
+			if id == -peer_id:
+				continue
+			peers[id].put_packet(message.to_utf8_buffer())
+		return OK
+	
+	assert(peers.has(peer_id))
+	var socket: WebSocketPeer = peers[peer_id]
+	if type == TYPE_STRING:
+		return socket.send_text(message)
+	return socket.send(var_to_bytes(message))
+
+func send_weapon_info(peer_id: int, data: String):
+	var message = {"type":"weapon_info", "data":data}
+	send(peer_id, JSON.stringify(message))
+	
