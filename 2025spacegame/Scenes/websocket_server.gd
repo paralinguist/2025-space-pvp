@@ -36,7 +36,7 @@ signal action(role: String, team: int, action: String)
 
 func log_message(message: String) -> void:
 	var time := "[color=#aaaaaa] %s |[/color] " % Time.get_time_string_from_system()
-	print(time + message + "\n")
+	print_rich(time + message + "\n")
 
 func _ready() -> void:
 	if tcp_server.listen(PORT) != OK:
@@ -86,6 +86,7 @@ func get_message(peer_id: int) -> String:
 				clients[peer_id] = {"team":instruction["team"], "role":instruction["role"]}
 				emit_signal("new_client", clients[peer_id])
 				if instruction["role"] == "weapons":
+					print("sending weapons info!")
 					send_weapon_info(peer_id)
 			elif instruction["action"] == "move":
 				if instruction["direction"] == "right":
@@ -96,6 +97,8 @@ func get_message(peer_id: int) -> String:
 					print("move tech left")
 					if clients[peer_id]["team"] == "tech":
 						TechShip.move(-1)
+			elif instruction["action"] == "shoot":
+				TechShip.shoot(int(instruction["weapon_id"]))
 	return "OK"
 	
 func poll() -> void:

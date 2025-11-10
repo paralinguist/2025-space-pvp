@@ -6,6 +6,7 @@ const GRID_DISTANCE = 32
 var left_size := 113*0.615
 var right_size := 113*0.615
 var hp = 100.0
+var alive = true
 
 const engine = preload("res://Scenes/Modules/engine.tscn")
 const science = preload("res://Scenes/Modules/science.tscn")
@@ -29,8 +30,9 @@ func start():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$HPBar.value = hp
-	$HPBar.modulate = Color.from_hsv(hp/280.0, 0.8, 0.9, 1.0)
+	if alive:
+		$HPBar.value = hp
+		$HPBar.modulate = Color.from_hsv(hp/280.0, 0.8, 0.9, 1.0)
 
 #dir should be -1 for left and 1 for right
 func move(dir:int):
@@ -50,10 +52,12 @@ func shoot(idx:int):
 		laser_count += 1
 
 func get_weapons():
-	var weapons = []
+	var weapons = {}
+	var module_number = 0
 	for c in get_children():
 		if c is Shooter:
-			weapons.append(c.weapon_type)
+			weapons[module_number] = c.weapon_type
+		module_number += 1
 	return weapons
 
 func reposition_shields():
@@ -75,6 +79,7 @@ func take_damage(dmg:float):
 		UI.visible = true
 		UI.get_node("Control/End").visible = true
 		UI.get_node("Control/End/Label").text = win_message
+		alive = false
 		for c in get_children():
 			if c is ShipModule:
 				c.die()

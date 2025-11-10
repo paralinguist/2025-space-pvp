@@ -5,12 +5,28 @@ ip = "127.0.0.1"
 port = 9876
 role = "weapons"
 team = "tech"
+weapon_id = 1
 
 space_api.connect(role, team, ip, port)
 
 message = ""
 
 while message != "quit":
+    time.sleep(0.1)
+    for response_number in range(len(space_api.message_stack)):
+        response = space_api.message_stack.pop()        #You can iterate over the environment list and look for objects of a type relevant to your character
+        if response["type"] == "environment":
+            for item in response["response"]:
+                if item['type'] != 'none':
+                    print(item)
+        elif response["type"] == "safe":
+            print(response["data"])
+        elif response["type"] == "begin_action":
+            print(response["data"])
+        elif response["type"] == "earpiece_info":
+            print(response["data"])
+        else:
+            print(response["data"])
     message = input('> ')
     if message == "print":
       print(f"My ID: {space_api.connection_id}")
@@ -24,22 +40,7 @@ while message != "quit":
         target_id = int(message_list[1])
         match message_list[0]:
             case "shoot":
-                space_api.shoot(weapon_id)
+                space_api.shoot(message_list[1])
     else:
         print("Not an option.")
-    time.sleep(0.1)
-    for response_number in range(len(space_api.message_stack)):
-        response = space_api.message_stack.pop()
-        #You can iterate over the environment list and look for objects of a type relevant to your character
-        if response["type"] == "environment":
-            for item in response["response"]:
-                if item['type'] != 'none':
-                    print(item)
-        elif response["type"] == "safe":
-            print(response["data"])
-        elif response["type"] == "begin_action":
-            print(response["data"])
-        elif response["type"] == "earpiece_info":
-            print(response["data"])
-
 space_api.disconnect()

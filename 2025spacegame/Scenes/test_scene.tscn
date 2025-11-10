@@ -25,12 +25,13 @@ script = ExtResource("1_ak5v8")
 position = Vector2(576, 500)
 scale = Vector2(0.615, 0.615)
 UI = NodePath("../UI")
-win_message = "Retro  Ship Survived"
+win_message = "Tech  Ship Survived"
 
 [node name="TechShip" parent="." node_paths=PackedStringArray("UI") instance=ExtResource("1_3dogw")]
 position = Vector2(576, 126)
 scale = Vector2(0.615, -0.615)
 UI = NodePath("../UI")
+win_message = "Retro Ship Survived"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -4096
@@ -74,7 +75,7 @@ layout_mode = 2
 text = "Tech Ship Survived!"
 label_settings = SubResource("LabelSettings_x033f")
 
-[node name="Button" type="Button" parent="UI/Control/End"]
+[node name="Restart" type="Button" parent="UI/Control/End"]
 layout_mode = 2
 text = "Again?"
 
@@ -93,5 +94,5 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Start"
 
-[connection signal="pressed" from="UI/Control/End/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="UI/Control/End/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/Control/Start" to="." method="_on_start_pressed"]
