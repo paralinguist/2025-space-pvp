@@ -86,8 +86,9 @@ func get_message(peer_id: int) -> String:
 				clients[peer_id] = {"team":instruction["team"], "role":instruction["role"]}
 				emit_signal("new_client", clients[peer_id])
 				if instruction["role"] == "weapons":
-					print("sending weapons info!")
 					send_weapon_info(peer_id)
+				elif instruction["role"] == "pilot":
+					pass
 			elif instruction["action"] == "move":
 				if instruction["direction"] == "right":
 					print("move tech right")

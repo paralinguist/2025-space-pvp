@@ -28,9 +28,6 @@ func start():
 	for c in get_children():
 		if c is ShipModule:
 			c.visible = true
-		if c is Shooter:
-			if randf() < 0.1:
-				c.shoot()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
