@@ -24,9 +24,13 @@ func spawn() -> void:
 		new_components[i].position = Vector2(52*i-104, 0)
 		new_components[i].visible = false
 func start():
+	randomize()
 	for c in get_children():
 		if c is ShipModule:
 			c.visible = true
+		if c is Shooter:
+			if randf() < 0.1:
+				c.shoot()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -85,3 +89,4 @@ func take_damage(dmg:float):
 				c.die()
 			else:
 				c.queue_free()
+		set_process(false)

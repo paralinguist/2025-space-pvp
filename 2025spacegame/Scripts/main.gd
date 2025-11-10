@@ -3,8 +3,7 @@ extends Node2D
 var game_started = false
 
 func _on_restart_pressed() -> void:
-	pass # Replace with function body.
-	#
+	get_tree().reload_current_scene()
 
 
 func _on_start_pressed() -> void:
