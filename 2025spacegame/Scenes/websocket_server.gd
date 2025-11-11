@@ -168,4 +168,7 @@ func send_weapon_info(peer_id: int):
 		weapons = RetroShip.get_weapons()
 	var message = {"type":"weapon_info", "data":weapons}
 	send(peer_id, JSON.stringify(message))
-	
+
+#Update message: Send data about power, immobilised/disabled, free moves, shields, HP?
+func _on_status_timer_timeout():
+	pass

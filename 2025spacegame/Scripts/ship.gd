@@ -75,7 +75,7 @@ func add_shield():
 			break
 
 func take_damage(dmg:float):
-	hp -= dmg*100
+	hp -= dmg*1
 	if hp <= 0.0:
 		UI.visible = true
 		UI.get_node("Control/End").visible = true

@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ccqh3j4h3b452"]
+[gd_scene load_steps=3 format=3 uid="uid://bt3dic4r1nwaa"]
 
-[ext_resource type="Script" uid="uid://cjc2ak2xhigsv" path="res://Scripts/bullet.gd" id="1_tyjee"]
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_tyjee"]
 [ext_resource type="Texture2D" uid="uid://vuxsfwayh0kh" path="res://Assets/PNG/Sprites X2/Missiles/spaceMissiles_009.png" id="2_tyjee"]
 
 [node name="MissileBullet" type="Node2D"]
