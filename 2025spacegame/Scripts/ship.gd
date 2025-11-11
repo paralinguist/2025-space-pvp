@@ -8,6 +8,17 @@ var right_size := 113*0.615
 var hp = 100.0
 var alive = true
 
+var total_power = 4
+var available_power = 1
+var pilot_power = 1
+var science_power = 1
+var weapon_power = 1
+
+var pilot_special = false
+var science_special = false
+var weapon_special = false
+var engineering_special = false
+
 const engine = preload("res://Scenes/Modules/engine.tscn")
 const science = preload("res://Scenes/Modules/science.tscn")
 const laser = preload("res://Scenes/Modules/laser.tscn")
