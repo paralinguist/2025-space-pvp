@@ -95,7 +95,6 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Start"
 
-<<<<<<< Updated upstream
 [node name="RetroPortraits" type="Node2D" parent="."]
 
 [node name="Portrait" parent="RetroPortraits" instance=ExtResource("6_x033f")]
@@ -129,9 +128,8 @@ speech_position = 1
 [node name="Portrait4" parent="TechPortraits" instance=ExtResource("6_x033f")]
 position = Vector2(1086, 65)
 speech_position = 1
-=======
+
 [node name="StatusTimer" type="Timer" parent="."]
->>>>>>> Stashed changes
 
 [connection signal="pressed" from="UI/Control/End/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/Control/Start" to="." method="_on_start_pressed"]
