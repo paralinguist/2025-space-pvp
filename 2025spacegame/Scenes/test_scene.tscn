@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccgemfou2b2ll"]
+[gd_scene load_steps=9 format=3 uid="uid://ccgemfou2b2ll"]
 
 [ext_resource type="PackedScene" uid="uid://b7hp126j04b4b" path="res://Scenes/test_ship.tscn" id="1_3dogw"]
 [ext_resource type="Script" uid="uid://bcr45us05q8fu" path="res://Scripts/main.gd" id="1_ak5v8"]
 [ext_resource type="Texture2D" uid="uid://ui0dp6xs3cs3" path="res://Assets/image5.jpg" id="2_r5l72"]
 [ext_resource type="Script" uid="uid://wmmjjexbv6tq" path="res://Scenes/websocket_server.gd" id="3_50ct6"]
 [ext_resource type="FontFile" uid="uid://ddcavhli5oec3" path="res://Assets/Tektur-Regular.ttf" id="4_hb2xm"]
+[ext_resource type="PackedScene" uid="uid://ds0evjgacxbtd" path="res://Scenes/portrait.tscn" id="6_x033f"]
 
 [sub_resource type="Theme" id="Theme_ak5v8"]
 default_font = ExtResource("4_hb2xm")
@@ -93,6 +94,40 @@ offset_bottom = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Start"
+
+[node name="RetroPortraits" type="Node2D" parent="."]
+
+[node name="Portrait" parent="RetroPortraits" instance=ExtResource("6_x033f")]
+position = Vector2(67, 582)
+speech_position = 2
+
+[node name="Portrait2" parent="RetroPortraits" instance=ExtResource("6_x033f")]
+position = Vector2(195, 582)
+speech_position = 2
+
+[node name="Portrait3" parent="RetroPortraits" instance=ExtResource("6_x033f")]
+position = Vector2(958, 582)
+speech_position = 0
+
+[node name="Portrait4" parent="RetroPortraits" instance=ExtResource("6_x033f")]
+position = Vector2(1086, 582)
+speech_position = 0
+
+[node name="TechPortraits" type="Node2D" parent="."]
+
+[node name="Portrait" parent="TechPortraits" instance=ExtResource("6_x033f")]
+position = Vector2(67, 65)
+
+[node name="Portrait2" parent="TechPortraits" instance=ExtResource("6_x033f")]
+position = Vector2(195, 65)
+
+[node name="Portrait3" parent="TechPortraits" instance=ExtResource("6_x033f")]
+position = Vector2(958, 65)
+speech_position = 1
+
+[node name="Portrait4" parent="TechPortraits" instance=ExtResource("6_x033f")]
+position = Vector2(1086, 65)
+speech_position = 1
 
 [connection signal="pressed" from="UI/Control/End/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/Control/Start" to="." method="_on_start_pressed"]
