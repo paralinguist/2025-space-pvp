@@ -17,7 +17,7 @@ func _ready() -> void:
 	HOW ARE YOU""")
 
 func speak(words):
-	$Timer.start()
+	$SpeechTimer.start()
 	$SpeechBubble.show_text(words)
 	$SpeechBubble.visible = true
 
@@ -25,3 +25,8 @@ func speak(words):
 func _on_timer_timeout() -> void:
 	$SpeechBubble.show_text("")
 	$SpeechBubble.visible = false
+	$FadeTimer.start()
+
+
+func _on_fade_timer_timeout() -> void:
+	self.visible = false

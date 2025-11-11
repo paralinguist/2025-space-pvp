@@ -12,3 +12,5 @@ func _on_start_pressed() -> void:
 	game_started = true
 	$RetroShip.start()
 	$TechShip.start()
+	$TechPortraits/TechPilot.visible = true
+	$TechPortraits/TechPilot.speak("Let's gooooo!")

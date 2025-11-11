@@ -97,35 +97,43 @@ text = "Start"
 
 [node name="RetroPortraits" type="Node2D" parent="."]
 
-[node name="Portrait" parent="RetroPortraits" instance=ExtResource("6_x033f")]
+[node name="RetroPilot" parent="RetroPortraits" instance=ExtResource("6_x033f")]
+visible = false
 position = Vector2(67, 582)
 speech_position = 2
 
-[node name="Portrait2" parent="RetroPortraits" instance=ExtResource("6_x033f")]
+[node name="RetroScience" parent="RetroPortraits" instance=ExtResource("6_x033f")]
+visible = false
 position = Vector2(195, 582)
 speech_position = 2
 
-[node name="Portrait3" parent="RetroPortraits" instance=ExtResource("6_x033f")]
+[node name="RetroWeapons" parent="RetroPortraits" instance=ExtResource("6_x033f")]
+visible = false
 position = Vector2(958, 582)
 speech_position = 0
 
-[node name="Portrait4" parent="RetroPortraits" instance=ExtResource("6_x033f")]
+[node name="RetroEngineer" parent="RetroPortraits" instance=ExtResource("6_x033f")]
+visible = false
 position = Vector2(1086, 582)
 speech_position = 0
 
 [node name="TechPortraits" type="Node2D" parent="."]
 
-[node name="Portrait" parent="TechPortraits" instance=ExtResource("6_x033f")]
+[node name="TechPilot" parent="TechPortraits" instance=ExtResource("6_x033f")]
+visible = false
 position = Vector2(67, 65)
 
-[node name="Portrait2" parent="TechPortraits" instance=ExtResource("6_x033f")]
+[node name="TechScience" parent="TechPortraits" instance=ExtResource("6_x033f")]
+visible = false
 position = Vector2(195, 65)
 
-[node name="Portrait3" parent="TechPortraits" instance=ExtResource("6_x033f")]
+[node name="TechWeapons" parent="TechPortraits" instance=ExtResource("6_x033f")]
+visible = false
 position = Vector2(958, 65)
 speech_position = 1
 
-[node name="Portrait4" parent="TechPortraits" instance=ExtResource("6_x033f")]
+[node name="TechEngineer" parent="TechPortraits" instance=ExtResource("6_x033f")]
+visible = false
 position = Vector2(1086, 65)
 speech_position = 1
 
