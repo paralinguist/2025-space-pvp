@@ -5,6 +5,14 @@ import json
 api_version = "0.9"
 client_type = "python"
 
+ship = { "total_power" : 4,
+         "available_power" : 1,
+         "pilot_power" : 1,
+         "science_power" : 1,
+         "weapon_power" : 1,
+         "shield" : 0
+    }
+
 active = True
 server_message = ""
 server = None
