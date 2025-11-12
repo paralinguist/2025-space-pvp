@@ -69,6 +69,7 @@ def connect(_role, _team, _ip, _port):
     global role
     global team
     role = _role
+    team = _team
     connected = False
     try:
         server = create_connection(f"ws://{_ip}:{_port}")

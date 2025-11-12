@@ -89,17 +89,19 @@ func get_message(peer_id: int) -> String:
 					send_weapon_info(peer_id)
 				elif instruction["role"] == "pilot":
 					pass
-			elif instruction["action"] == "move":
-				if instruction["direction"] == "right":
-					if clients[peer_id]["team"] == "tech":
-						TechShip.move(1)
-				else:
-					if clients[peer_id]["team"] == "tech":
-						TechShip.move(-1)
-			elif instruction["action"] == "shoot":
-				TechShip.shoot(int(instruction["weapon_id"]))
-			elif instruction["action"] == "shield":
-				TechShip.add_shield()
+			else:
+				var ship = TechShip
+				if clients[peer_id]["team"] == "retro":
+					ship = RetroShip
+				if instruction["action"] == "move":
+					if instruction["direction"] == "right":
+						ship.move(1)
+					else:
+						ship.move(-1)
+				elif instruction["action"] == "shoot":
+					ship.shoot(int(instruction["weapon_id"]))
+				elif instruction["action"] == "shield":
+					ship.add_shield()
 	return "OK"
 	
 func poll() -> void:
