@@ -2,7 +2,7 @@ from websocket import create_connection
 import threading
 import json
 
-api_version = "0.9"
+api_version = "0.91"
 client_type = "python"
 
 ship = { "total_power" : 4,
@@ -22,7 +22,7 @@ message_stack = []
 #encounter_state (WAITING, IN_PROGRESS, ENDED_FAIL, ENDED_WIN, UDEAD)
 
 playername = "Clarence"
-role = "lockpick"
+role = "science"
 team = "tech"
 connection_id = 0
 
@@ -39,12 +39,25 @@ def listener(_server):
             server_message = _server.recv()#.decode("utf-8")
             try:
                 server_response = json.loads(server_message)
-                message_stack.append(server_response)
+                if server_response["type"] == "status":
+                    update_ship_status(server_response["data"])
+                else:
+                    message_stack.append(server_response)
             except:
                 print("Server sent non-JSON response!")
         except Exception as e:
             print(e)
             disconnect()
+
+def update_ship_status(status):
+    global ship
+    ship["total_power"] = status["total_power"]
+    ship["available_power"] = status["available_power"]
+    ship["pilot_power"] = status["pilot_power"]
+    ship["science_power"] = status["science_power"]
+    ship["weapon_power"] = status["weapon_power"]
+    ship["shield"] = status["shield"]
+    ship["hp"] = status["hp"]
 
 #Instruction must already have at least an action
 def send_instruction(instruction):

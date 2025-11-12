@@ -79,8 +79,10 @@ func get_status():
 	status["available_power"] = available_power
 	status["pilot_power"] = pilot_power
 	status["science_power"] = science_power
-	status["weapon_power"]
+	status["weapon_power"] = weapon_power
 	status["shield"] = shield_level
+	status["hp"] = hp
+	return status
 
 func reposition_shields():
 	for s in range($ShieldSpot.get_child_count()):

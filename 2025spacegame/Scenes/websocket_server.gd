@@ -173,4 +173,12 @@ func send_weapon_info(peer_id: int):
 
 #Update message: Send data about power, immobilised/disabled, free moves, shields, HP?
 func _on_status_timer_timeout():
-	pass
+	var status_message = {"type": "status"}
+	var tech_status = TechShip.get_status()
+	var retro_status = RetroShip.get_status()
+	for client in clients:
+		if clients[client]["team"] == "tech":
+			status_message["data"] = tech_status
+		else:
+			status_message["data"] = retro_status
+		send(client, JSON.stringify(status_message))
