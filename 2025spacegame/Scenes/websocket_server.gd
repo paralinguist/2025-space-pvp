@@ -91,15 +91,15 @@ func get_message(peer_id: int) -> String:
 					pass
 			elif instruction["action"] == "move":
 				if instruction["direction"] == "right":
-					print("move tech right")
 					if clients[peer_id]["team"] == "tech":
 						TechShip.move(1)
 				else:
-					print("move tech left")
 					if clients[peer_id]["team"] == "tech":
 						TechShip.move(-1)
 			elif instruction["action"] == "shoot":
 				TechShip.shoot(int(instruction["weapon_id"]))
+			elif instruction["action"] == "shield":
+				TechShip.add_shield()
 	return "OK"
 	
 func poll() -> void:

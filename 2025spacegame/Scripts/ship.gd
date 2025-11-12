@@ -13,6 +13,7 @@ var available_power = 1
 var pilot_power = 1
 var science_power = 1
 var weapon_power = 1
+var shield_level = 0
 
 var pilot_special = false
 var science_special = false
@@ -72,6 +73,15 @@ func get_weapons():
 		module_number += 1
 	return weapons
 
+func get_status():
+	var status = {}
+	status["total_power"] = total_power
+	status["available_power"] = available_power
+	status["pilot_power"] = pilot_power
+	status["science_power"] = science_power
+	status["weapon_power"]
+	status["shield"] = shield_level
+
 func reposition_shields():
 	for s in range($ShieldSpot.get_child_count()):
 		$ShieldSpot.get_child(s).position.y = s*-20
@@ -83,6 +93,7 @@ func add_shield():
 				var new_shield := shield.instantiate()
 				$ShieldSpot.add_child(new_shield)
 				reposition_shields()
+				shield_level += 1
 			break
 
 func take_damage(dmg:float):

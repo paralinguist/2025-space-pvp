@@ -35,6 +35,8 @@ while message != "quit":
         space_api.move("left")
     elif message == "right":
         space_api.move("right")
+    elif message == "shield":
+        space_api.add_shield()
     elif message.split(" ")[0] in ["shoot", "power"]:
         message_list = message.split(" ")
         target_id = int(message_list[1])

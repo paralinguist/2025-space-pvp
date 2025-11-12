@@ -53,6 +53,10 @@ def shoot(weapon_id):
     instruction = {"action":"shoot", "weapon_id":weapon_id}
     send_instruction(instruction)
 
+def add_shield():
+        instruction = {"action":"shield"}
+        send_instruction(instruction)
+
 def disconnect():
     print("Disconnecting...")
     global server
