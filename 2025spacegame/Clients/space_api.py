@@ -59,7 +59,6 @@ def update_ship_status(status):
     ship["shield"] = status["shield"]
     ship["hp"] = status["hp"]
 
-#Instruction must already have at least an action
 def send_instruction(instruction):
     instruction["role"] = role
     instruction["team"] = team
@@ -77,6 +76,10 @@ def shoot(weapon_id):
 def add_shield():
         instruction = {"action":"shield"}
         send_instruction(instruction)
+
+def power(direction, target):
+    instruction = {"action":"power", "direction":direction, "target":target}
+    send_instruction(instruction)
 
 def disconnect():
     print("Disconnecting...")

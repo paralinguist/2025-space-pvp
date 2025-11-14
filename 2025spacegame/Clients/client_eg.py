@@ -14,7 +14,7 @@ message = ""
 while message != "quit":
     time.sleep(0.1)
     for response_number in range(len(space_api.message_stack)):
-        response = space_api.message_stack.pop()        #You can iterate over the environment list and look for objects of a type relevant to your character
+        response = space_api.message_stack.pop()
         if response["type"] == "environment":
             for item in response["response"]:
                 if item['type'] != 'none':
@@ -37,12 +37,15 @@ while message != "quit":
         space_api.move("right")
     elif message == "shield":
         space_api.add_shield()
+    elif message == "status":
+        print(space_api.ship)
     elif message.split(" ")[0] in ["shoot", "power"]:
         message_list = message.split(" ")
-        target_id = int(message_list[1])
         match message_list[0]:
             case "shoot":
                 space_api.shoot(message_list[1])
+            case "power":
+                space_api.power(message_list[1], message_list[2])
     else:
         print("Not an option.")
 space_api.disconnect()

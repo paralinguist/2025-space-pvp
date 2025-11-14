@@ -98,6 +98,29 @@ func add_shield():
 				shield_level += 1
 			break
 
+#This would be more efficient with int consts or enums, but for this project, strings will do
+func power_down(module):
+	if module == "pilot" and pilot_power >= 1:
+		available_power += 1
+		pilot_power -= 1
+	elif module == "science" and science_power >= 1:
+		available_power += 1
+		science_power -=1
+	elif module == "weapons" and weapon_power >= 1:
+		available_power += 1
+		weapon_power -= 1
+
+func power_up(module):
+	if module == "pilot" and available_power >= 1:
+		available_power -= 1
+		pilot_power += 1
+	elif module == "science" and available_power >= 1:
+		available_power -= 1
+		science_power +=1
+	elif module == "weapons" and available_power >= 1:
+		available_power -= 1
+		weapon_power += 1
+
 func take_damage(dmg:float):
 	hp -= dmg*1
 	if hp <= 0.0:

@@ -138,8 +138,7 @@ position = Vector2(1086, 65)
 speech_position = 1
 
 [node name="StatusTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
+wait_time = 2.0
 autostart = true
 
 [connection signal="pressed" from="UI/Control/End/Restart" to="." method="_on_restart_pressed"]
