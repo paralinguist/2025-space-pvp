@@ -4,7 +4,7 @@ var origin := Vector2.ZERO
 var count = 0
 var text_speed := 6
 var pressed := false
-signal close_text
+#signal close_text
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -26,7 +26,7 @@ func set_type(horiz, vert):
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if visible:
 		if visible_ratio < 1.0:
 			count += 1
@@ -42,3 +42,4 @@ func show_text(txt: String, speed: int = 6):
 	visible_ratio = 0.0
 	count = 0
 	visible = true
+	text_speed = speed

@@ -4,7 +4,7 @@ var deactivated := false
 var respawn_timer : Timer = null
 @export var particles: GPUParticles2D
 
-func _process(delta: float):
+func _process(_delta: float):
 	if deactivated:
 		modulate = Color("#777777FF")
 	else:

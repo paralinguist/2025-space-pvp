@@ -32,7 +32,7 @@ signal message_received(peer_id: int, message: String)
 signal client_connected(peer_id: int)
 signal new_client(peer_id: int, role: String, team: int)
 signal client_disconnected(peer_id: int)
-signal action(role: String, team: int, action: String)
+#signal action(role: String, team: int, action: String)
 
 func log_message(message: String) -> void:
 	var time := "[color=#aaaaaa] %s |[/color] " % Time.get_time_string_from_system()
@@ -72,11 +72,11 @@ func _connect_pending(p: PendingPeer) -> bool:
 
 func get_message(peer_id: int) -> String:
 	assert(peers.has(peer_id))
-	var socket: WebSocketPeer = peers[peer_id]
-	if socket.get_available_packet_count() < 1:
+	var message_socket: WebSocketPeer = peers[peer_id]
+	if message_socket.get_available_packet_count() < 1:
 		return "Not OK"
-	var pkt: PackedByteArray = socket.get_packet()
-	if socket.was_string_packet():
+	var pkt: PackedByteArray = message_socket.get_packet()
+	if message_socket.was_string_packet():
 		var message = pkt.get_string_from_utf8()
 		var ship_instruction = JSON.new()
 		if ship_instruction.parse(message) == OK:
@@ -156,10 +156,10 @@ func send(peer_id: int, message: String) -> int:
 		return OK
 	
 	assert(peers.has(peer_id))
-	var socket: WebSocketPeer = peers[peer_id]
+	var send_socket: WebSocketPeer = peers[peer_id]
 	if type == TYPE_STRING:
-		return socket.send_text(message)
-	return socket.send(var_to_bytes(message))
+		return send_socket.send_text(message)
+	return send_socket.send(var_to_bytes(message))
 
 func send_weapon_info(peer_id: int):
 	var team = clients[peer_id]["team"]

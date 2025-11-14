@@ -42,7 +42,7 @@ func start():
 			c.visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if alive:
 		$HPBar.value = hp
 		$HPBar.modulate = Color.from_hsv(hp/280.0, 0.8, 0.9, 1.0)

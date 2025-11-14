@@ -2,7 +2,7 @@ class_name Bullet extends Node2D
 @export var speed = 600
 @export var dmg := 10.0
 var delay_time = 0.35
-var glob_x := 0
+var glob_x := 0.0
 
 func _ready():
 	glob_x = global_position.x
