@@ -103,6 +103,7 @@ func get_message(peer_id: int) -> String:
 				elif instruction["action"] == "shield":
 					ship.add_shield()
 				elif instruction["action"] == "power":
+					print("Eng power instruction")
 					if instruction["direction"] == "down":
 						ship.power_down(instruction["target"])
 					else:

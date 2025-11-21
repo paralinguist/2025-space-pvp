@@ -1,3 +1,4 @@
+import serial
 import pygame
 import space_api
 import time
@@ -10,12 +11,18 @@ RED = (200, 0, 0)
 BRIGHT_RED = (255, 0, 0)
 pygame.init()
 
-ip = "127.0.0.1"
+ip = "10.202.176.90"
 port = 9876
 role = "engineer"
 team = "retro"
+space_api.connect(role, team, ip, port)
 
-connected = False
+port = "/dev/tty.usbmodem11301"
+baud = 115200
+ser = serial.Serial(port)
+ser.baudrate = baud
+
+connected = True
 
 font = pygame.font.Font(None, 30)
 
@@ -39,11 +46,7 @@ def quit_game():
     exit()
 
 def connect():
-    global connected
-    if not connected:
-        space_api.connect(role, team, ip, port)
-        connected = True
-        print("Connected to server")
+    print("This button does nothing.")
 
 def draw_progress_bar(surface, position, size, border_color, fill_color, progress):
     """
@@ -74,7 +77,6 @@ def draw_progress_bar(surface, position, size, border_color, fill_color, progres
     pygame.draw.rect(surface, fill_color, (inner_x, inner_y, inner_width, inner_height))
 
 if __name__ == '__main__':
-
     SCREEN_WIDTH = 800
     SCREEN_HEIGHT = 600
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -127,5 +129,11 @@ if __name__ == '__main__':
             
         pygame.display.flip()
         clock.tick(60)
+        if (ser.inWaiting()>0):
+            data = ser.read().decode()
+            if "b" in data:
+                space_api.move("left")
+            elif "r" in data:
+                space_api.move("right")
 
     pygame.quit()
