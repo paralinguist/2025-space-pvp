@@ -7,6 +7,7 @@ var left_size := 113*0.615
 var right_size := 113*0.615
 var hp = 100.0
 var alive = true
+var dodge_rate := 0.0
 
 var total_power = 4
 var available_power = 1
@@ -19,6 +20,11 @@ var pilot_special = false
 var science_special = false
 var weapon_special = false
 var engineering_special = false
+
+var pilot_cooldown = false
+var science_cooldown = false
+
+var missiles = 0
 
 const engine = preload("res://Scenes/Modules/engine.tscn")
 const science = preload("res://Scenes/Modules/science.tscn")
@@ -49,10 +55,36 @@ func _process(_delta: float) -> void:
 
 #dir should be -1 for left and 1 for right
 func move(dir:int):
-	if not $Engine.deactivated:
+	if not $Engine.deactivated and not pilot_cooldown:
+		pilot_cooldown = true
+		set_pilot_cooldown()
+		$PilotTimer.start()
 		position.x += dir*GRID_DISTANCE
 		if position.x < left_size or position.x > 1152-right_size:
 			position.x -= dir*GRID_DISTANCE
+
+func set_pilot_cooldown():
+	if pilot_power == 0:
+		$PilotTimer.stop()
+		$PilotTimer.wait_time = 120
+	elif pilot_power == 1:
+		$PilotTimer.wait_time = 4
+		dodge_rate = 0.0
+	elif pilot_power == 2:
+		$PilotTimer.wait_time = 3
+		dodge_rate = 0.0
+	elif pilot_power == 3:
+		$PilotTimer.wait_time = 2
+		dodge_rate = 0.0
+	elif pilot_power == 4:
+		$PilotTimer.wait_time = 1
+		dodge_rate = 0.0
+	elif pilot_power == 5:
+		$PilotTimer.wait_time = 0.1
+		dodge_rate = 0.0
+	elif pilot_power == 6:
+		$PilotTimer.wait_time = 0.1
+		dodge_rate = 0.5
 
 func shoot(idx:int):
 	var laser_count := 0
@@ -103,6 +135,7 @@ func power_down(module):
 	if module == "pilot" and pilot_power >= 1:
 		available_power += 1
 		pilot_power -= 1
+		set_pilot_cooldown()
 	elif module == "science" and science_power >= 1:
 		available_power += 1
 		science_power -=1
@@ -114,6 +147,8 @@ func power_up(module):
 	if module == "pilot" and available_power >= 1:
 		available_power -= 1
 		pilot_power += 1
+		pilot_cooldown = false
+		set_pilot_cooldown()
 	elif module == "science" and available_power >= 1:
 		available_power -= 1
 		science_power +=1
@@ -134,3 +169,7 @@ func take_damage(dmg:float):
 			else:
 				c.queue_free()
 		set_process(false)
+
+
+func _on_pilot_timer_timeout() -> void:
+	pilot_cooldown = false

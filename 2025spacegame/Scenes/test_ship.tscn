@@ -57,3 +57,8 @@ theme_override_styles/background = SubResource("StyleBoxFlat_n6vk2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_twhwe")
 value = 70.0
 show_percentage = false
+
+[node name="PilotTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="timeout" from="PilotTimer" to="." method="_on_pilot_timer_timeout"]
