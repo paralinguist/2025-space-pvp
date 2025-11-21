@@ -23,8 +23,9 @@ var engineering_special = false
 
 var pilot_cooldown = false
 var science_cooldown = false
+var weapons_cooldown = false
 
-var missiles = 0
+var missiles = 2
 
 const engine = preload("res://Scenes/Modules/engine.tscn")
 const science = preload("res://Scenes/Modules/science.tscn")
@@ -87,14 +88,17 @@ func set_pilot_cooldown():
 		dodge_rate = 0.5
 
 func shoot(idx:int):
-	var laser_count := 0
-	for c in get_children():
-		if c is Shooter:
-			if idx == laser_count:
-				if not c.deactivated:
-					c.shoot()
-				break
-		laser_count += 1
+	if not weapons_cooldown and weapon_power > 0:
+		var laser_count := 0
+		for c in get_children():
+			if c is Shooter:
+				if idx == laser_count or weapon_power >= 2:
+					if not c.deactivated:
+						weapons_cooldown = true
+						$WeaponsTimer.start()
+						c.shoot()
+					break
+			laser_count += 1
 
 func get_weapons():
 	var weapons = {}
@@ -121,14 +125,41 @@ func reposition_shields():
 		$ShieldSpot.get_child(s).position.y = s*-20
 
 func add_shield():
-	for c in get_children():
-		if c is Science:
-			if not c.deactivated:
-				var new_shield := shield.instantiate()
-				$ShieldSpot.add_child(new_shield)
-				reposition_shields()
-				shield_level += 1
-			break
+	if shield_level < 8 and not science_cooldown:
+		for c in get_children():
+			if c is Science:
+				if not c.deactivated:
+					science_cooldown = true
+					set_science_cooldown()
+					var new_shield := shield.instantiate()
+					$ShieldSpot.add_child(new_shield)
+					reposition_shields()
+					shield_level += 1
+				break
+
+func consume_shield():
+	if shield_level >= 1 and not science_cooldown:
+		science_special = true
+		science_cooldown = true
+		set_science_cooldown()
+
+func set_science_cooldown():
+	if science_power == 0:
+		science_cooldown = true
+		$ScienceTimer.stop()
+		$ScienceTimer.wait_time = 120
+	elif science_power == 1:
+		$ScienceTimer.wait_time = 8
+	elif science_power == 2:
+		$ScienceTimer.wait_time = 7
+	elif science_power == 3:
+		$ScienceTimer.wait_time = 6
+	elif science_power == 4:
+		$ScienceTimer.wait_time = 5
+	elif science_power == 5:
+		$ScienceTimer.wait_time = 4
+	elif science_power == 6:
+		$ScienceTimer.wait_time = 3
 
 #This would be more efficient with int consts or enums, but for this project, strings will do
 func power_down(module):
@@ -139,6 +170,7 @@ func power_down(module):
 	elif module == "science" and science_power >= 1:
 		available_power += 1
 		science_power -=1
+		set_science_cooldown()
 	elif module == "weapons" and weapon_power >= 1:
 		available_power += 1
 		weapon_power -= 1
@@ -152,6 +184,8 @@ func power_up(module):
 	elif module == "science" and available_power >= 1:
 		available_power -= 1
 		science_power +=1
+		science_cooldown = false
+		set_science_cooldown()
 	elif module == "weapons" and available_power >= 1:
 		available_power -= 1
 		weapon_power += 1
@@ -173,3 +207,11 @@ func take_damage(dmg:float):
 
 func _on_pilot_timer_timeout() -> void:
 	pilot_cooldown = false
+
+
+func _on_science_timer_timeout() -> void:
+	science_cooldown = false
+
+
+func _on_weapons_timer_timeout() -> void:
+	weapons_cooldown = false

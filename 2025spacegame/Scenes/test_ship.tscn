@@ -61,4 +61,12 @@ show_percentage = false
 [node name="PilotTimer" type="Timer" parent="."]
 wait_time = 4.0
 
+[node name="ScienceTimer" type="Timer" parent="."]
+wait_time = 8.0
+
+[node name="WeaponsTimer" type="Timer" parent="."]
+wait_time = 6.0
+
 [connection signal="timeout" from="PilotTimer" to="." method="_on_pilot_timer_timeout"]
+[connection signal="timeout" from="ScienceTimer" to="." method="_on_science_timer_timeout"]
+[connection signal="timeout" from="WeaponsTimer" to="." method="_on_weapons_timer_timeout"]
