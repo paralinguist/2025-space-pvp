@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ccgemfou2b2ll"]
+[gd_scene load_steps=10 format=3 uid="uid://ccgemfou2b2ll"]
 
 [ext_resource type="PackedScene" uid="uid://b7hp126j04b4b" path="res://Scenes/test_ship.tscn" id="1_3dogw"]
 [ext_resource type="Script" uid="uid://bcr45us05q8fu" path="res://Scripts/main.gd" id="1_ak5v8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://wmmjjexbv6tq" path="res://Scenes/websocket_server.gd" id="3_50ct6"]
 [ext_resource type="FontFile" uid="uid://ddcavhli5oec3" path="res://Assets/Tektur-Regular.ttf" id="4_hb2xm"]
 [ext_resource type="PackedScene" uid="uid://ds0evjgacxbtd" path="res://Scenes/portrait.tscn" id="6_x033f"]
+[ext_resource type="Texture2D" uid="uid://de4ni4hyrprxc" path="res://Assets/PNG/Sprites X2/Missiles/spaceMissiles_029.png" id="7_rdbpf"]
 
 [sub_resource type="Theme" id="Theme_ak5v8"]
 default_font = ExtResource("4_hb2xm")
@@ -98,48 +99,68 @@ text = "Start"
 [node name="RetroPortraits" type="Node2D" parent="."]
 
 [node name="RetroPilot" parent="RetroPortraits" instance=ExtResource("6_x033f")]
-visible = false
 position = Vector2(67, 582)
 speech_position = 2
 
 [node name="RetroScience" parent="RetroPortraits" instance=ExtResource("6_x033f")]
-visible = false
 position = Vector2(195, 582)
 speech_position = 2
 
 [node name="RetroWeapons" parent="RetroPortraits" instance=ExtResource("6_x033f")]
-visible = false
 position = Vector2(958, 582)
 speech_position = 0
 
 [node name="RetroEngineer" parent="RetroPortraits" instance=ExtResource("6_x033f")]
-visible = false
 position = Vector2(1086, 582)
 speech_position = 0
 
 [node name="TechPortraits" type="Node2D" parent="."]
 
 [node name="TechPilot" parent="TechPortraits" instance=ExtResource("6_x033f")]
-visible = false
 position = Vector2(67, 65)
 
 [node name="TechScience" parent="TechPortraits" instance=ExtResource("6_x033f")]
-visible = false
 position = Vector2(195, 65)
 
 [node name="TechWeapons" parent="TechPortraits" instance=ExtResource("6_x033f")]
-visible = false
 position = Vector2(958, 65)
 speech_position = 1
 
 [node name="TechEngineer" parent="TechPortraits" instance=ExtResource("6_x033f")]
-visible = false
 position = Vector2(1086, 65)
 speech_position = 1
 
 [node name="StatusTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
+
+[node name="Icons" type="Node2D" parent="."]
+
+[node name="TechMissiles" type="Sprite2D" parent="Icons"]
+position = Vector2(912.99994, 111.999985)
+rotation = 0.61086524
+scale = Vector2(0.45098367, 0.4509837)
+texture = ExtResource("7_rdbpf")
+
+[node name="LabelTechMissiles" type="Label" parent="Icons"]
+offset_left = 922.0
+offset_top = 104.0
+offset_right = 962.0
+offset_bottom = 127.0
+text = ": 2"
+
+[node name="RetroMissiles" type="Sprite2D" parent="Icons"]
+position = Vector2(912.99994, 624.99994)
+rotation = 0.61086524
+scale = Vector2(0.45098367, 0.4509837)
+texture = ExtResource("7_rdbpf")
+
+[node name="LabelRetroMissiles" type="Label" parent="Icons"]
+offset_left = 922.0
+offset_top = 617.0
+offset_right = 962.0
+offset_bottom = 640.0
+text = ": 2"
 
 [connection signal="pressed" from="UI/Control/End/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/Control/Start" to="." method="_on_start_pressed"]

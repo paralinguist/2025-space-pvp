@@ -14,3 +14,7 @@ func _on_start_pressed() -> void:
 	$TechShip.start()
 	$TechPortraits/TechPilot.visible = true
 	$TechPortraits/TechPilot.speak("Let's gooooo!")
+
+func _process(_delta: float) -> void:
+	$Icons/LabelTechMissiles.text = ": " + str($TechShip.missiles)
+	$Icons/LabelRetroMissiles.text = ": " + str($RetroShip.missiles)

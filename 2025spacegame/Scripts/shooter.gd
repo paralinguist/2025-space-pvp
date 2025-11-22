@@ -18,3 +18,9 @@ func shoot():
 		add_child(new_bullet)
 		new_bullet.position = Vector2(0, -110)
 		$Cooldown.is_stopped()
+
+func double_shot():
+	$DoubleShot.start()
+
+func _on_double_shot_timeout() -> void:
+	shoot()

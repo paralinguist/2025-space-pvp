@@ -2,7 +2,7 @@ from websocket import create_connection
 import threading
 import json
 
-api_version = "0.91"
+api_version = "0.92"
 client_type = "python"
 
 ship = { "total_power" : 4,

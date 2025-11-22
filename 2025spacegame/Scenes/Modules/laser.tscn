@@ -84,3 +84,9 @@ one_shot = true
 emitting = false
 texture = ExtResource("6_4fo1o")
 process_material = SubResource("ParticleProcessMaterial_dkqqs")
+
+[node name="DoubleShot" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="DoubleShot" to="." method="_on_double_shot_timeout"]

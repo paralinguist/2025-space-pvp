@@ -15,7 +15,7 @@ const PORT: int = 9876
 const TECH_TEAM: int = 0
 const RETRO_TEAM: int = 1
 
-var api_version := "0.9"
+var api_version := "0.92"
 var tcp_server := TCPServer.new()
 var socket := WebSocketPeer.new()
 var pending_peers: Array[PendingPeer] = []
@@ -99,11 +99,11 @@ func get_message(peer_id: int) -> String:
 					else:
 						ship.move(-1)
 				elif instruction["action"] == "shoot":
-					ship.shoot(int(instruction["weapon_id"]))
+					ship.shoot(instruction["weapon_id"])
 				elif instruction["action"] == "shield":
 					ship.add_shield()
 				elif instruction["action"] == "power":
-					print("Eng power instruction")
+					print("Eng power instruction: " + instruction["action"] + " " + instruction["direction"] + " " + instruction["target"])
 					if instruction["direction"] == "down":
 						ship.power_down(instruction["target"])
 					else:

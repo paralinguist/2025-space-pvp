@@ -64,41 +64,27 @@ func move(dir:int):
 		if position.x < left_size or position.x > 1152-right_size:
 			position.x -= dir*GRID_DISTANCE
 
-func set_pilot_cooldown():
-	if pilot_power == 0:
-		$PilotTimer.stop()
-		$PilotTimer.wait_time = 120
-	elif pilot_power == 1:
-		$PilotTimer.wait_time = 4
-		dodge_rate = 0.0
-	elif pilot_power == 2:
-		$PilotTimer.wait_time = 3
-		dodge_rate = 0.0
-	elif pilot_power == 3:
-		$PilotTimer.wait_time = 2
-		dodge_rate = 0.0
-	elif pilot_power == 4:
-		$PilotTimer.wait_time = 1
-		dodge_rate = 0.0
-	elif pilot_power == 5:
-		$PilotTimer.wait_time = 0.1
-		dodge_rate = 0.0
-	elif pilot_power == 6:
-		$PilotTimer.wait_time = 0.1
-		dodge_rate = 0.5
-
-func shoot(idx:int):
+func shoot(weapon:String):
+	print("Shooting!")
+	print("Weapon power: " + str(weapon_power))
+	print("Weapon id: " + weapon)
 	if not weapons_cooldown and weapon_power > 0:
-		var laser_count := 0
+		if weapon_power >= 4:
+			weapon = "lasermissile"
 		for c in get_children():
-			if c is Shooter:
-				if idx == laser_count or weapon_power >= 2:
-					if not c.deactivated:
-						weapons_cooldown = true
-						$WeaponsTimer.start()
+			if c is Shooter and not c.deactivated and c.weapon_type in weapon:
+				if c.weapon_type == "missile":
+					if missiles > 0:
+						missiles = missiles - 1
 						c.shoot()
+				else:
+					c.shoot()
+				if c.weapon_type == "laser" and weapon_power >= 6:
+					c.double_shot()
+				if weapon_power <= 1:
 					break
-			laser_count += 1
+		weapons_cooldown = true
+		$WeaponsTimer.start()
 
 func get_weapons():
 	var weapons = {}
@@ -143,23 +129,64 @@ func consume_shield():
 		science_cooldown = true
 		set_science_cooldown()
 
+func set_pilot_cooldown():
+	if pilot_power == 0:
+		$PilotTimer.stop()
+		$PilotTimer.wait_time = 120
+	else:
+		if pilot_power == 1:
+			$PilotTimer.wait_time = 4
+			dodge_rate = 0.0
+		elif pilot_power == 2:
+			$PilotTimer.wait_time = 3
+			dodge_rate = 0.0
+		elif pilot_power == 3:
+			$PilotTimer.wait_time = 2
+			dodge_rate = 0.0
+		elif pilot_power == 4:
+			$PilotTimer.wait_time = 1
+			dodge_rate = 0.0
+		elif pilot_power == 5:
+			$PilotTimer.wait_time = 0.1
+			dodge_rate = 0.0
+		elif pilot_power == 6:
+			$PilotTimer.wait_time = 0.1
+			dodge_rate = 0.5
+		$PilotTimer.start()
+
 func set_science_cooldown():
-	if science_power == 0:
+	if science_power <= 0:
 		science_cooldown = true
 		$ScienceTimer.stop()
 		$ScienceTimer.wait_time = 120
-	elif science_power == 1:
-		$ScienceTimer.wait_time = 8
-	elif science_power == 2:
-		$ScienceTimer.wait_time = 7
-	elif science_power == 3:
-		$ScienceTimer.wait_time = 6
-	elif science_power == 4:
-		$ScienceTimer.wait_time = 5
-	elif science_power == 5:
-		$ScienceTimer.wait_time = 4
-	elif science_power == 6:
-		$ScienceTimer.wait_time = 3
+	else:
+		if science_power == 1:
+			$ScienceTimer.wait_time = 8
+		elif science_power == 2:
+			$ScienceTimer.wait_time = 7
+		elif science_power == 3:
+			$ScienceTimer.wait_time = 6
+		elif science_power == 4:
+			$ScienceTimer.wait_time = 5
+		elif science_power == 5:
+			$ScienceTimer.wait_time = 4
+		elif science_power == 6:
+			$ScienceTimer.wait_time = 3
+		$ScienceTimer.start()
+
+func set_weapons_cooldown():
+	if weapon_power == 0:
+		weapons_cooldown = true
+		$MissileRegenTimer.stop()
+		$WeaponsTimer.stop()
+	else:
+		if weapon_power == 3:
+			$MissileRegenTimer.wait_time = 6
+			$MissileRegenTimer.start()
+		elif weapon_power == 5:
+			$MissileRegenTimer.wait_time = 3
+			$MissileRegenTimer.start()
+		$WeaponsTimer.start()
 
 #This would be more efficient with int consts or enums, but for this project, strings will do
 func power_down(module):
@@ -174,6 +201,7 @@ func power_down(module):
 	elif module == "weapons" and weapon_power >= 1:
 		available_power += 1
 		weapon_power -= 1
+		set_weapons_cooldown()
 
 func power_up(module):
 	if module == "pilot" and available_power >= 1:
@@ -189,6 +217,7 @@ func power_up(module):
 	elif module == "weapons" and available_power >= 1:
 		available_power -= 1
 		weapon_power += 1
+		set_weapons_cooldown()
 
 func take_damage(dmg:float):
 	hp -= dmg*1
@@ -208,10 +237,13 @@ func take_damage(dmg:float):
 func _on_pilot_timer_timeout() -> void:
 	pilot_cooldown = false
 
-
 func _on_science_timer_timeout() -> void:
 	science_cooldown = false
 
-
 func _on_weapons_timer_timeout() -> void:
 	weapons_cooldown = false
+
+func _on_missile_regen_timer_timeout() -> void:
+	missiles = missiles + 1
+	if weapon_power < 3:
+		$MissileRegenTimer.stop()
