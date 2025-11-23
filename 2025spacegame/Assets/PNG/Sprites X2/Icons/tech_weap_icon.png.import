@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e76suaj1mnt"
-path="res://.godot/imported/engineer.png-588e6168cfabe44831d5215d2faae8c3.ctex"
+uid="uid://c8mssxso8oecc"
+path="res://.godot/imported/tech_weap_icon.png-9383a879d6abe07b880655ff9733713c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PNG/Sprites X2/Icons/engineer.png"
-dest_files=["res://.godot/imported/engineer.png-588e6168cfabe44831d5215d2faae8c3.ctex"]
+source_file="res://Assets/PNG/Sprites X2/Icons/tech_weap_icon.png"
+dest_files=["res://.godot/imported/tech_weap_icon.png-9383a879d6abe07b880655ff9733713c.ctex"]
 
 [params]
 

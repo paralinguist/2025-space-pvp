@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwxe1c1pb4kj7"
-path="res://.godot/imported/science.png-6ce1c3e53853d59e4bbb7ffebf054537.ctex"
+uid="uid://dy68v0j5dc41l"
+path="res://.godot/imported/tech_eng_icon.png-61f9f21e65d17e3af5c3028ef0196d37.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PNG/Sprites X2/Icons/science.png"
-dest_files=["res://.godot/imported/science.png-6ce1c3e53853d59e4bbb7ffebf054537.ctex"]
+source_file="res://Assets/PNG/Sprites X2/Icons/tech_eng_icon.png"
+dest_files=["res://.godot/imported/tech_eng_icon.png-61f9f21e65d17e3af5c3028ef0196d37.ctex"]
 
 [params]
 

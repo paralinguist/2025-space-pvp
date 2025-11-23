@@ -15,6 +15,8 @@ const PORT: int = 9876
 const TECH_TEAM: int = 0
 const RETRO_TEAM: int = 1
 
+var Scene
+
 var api_version := "0.92"
 var tcp_server := TCPServer.new()
 var socket := WebSocketPeer.new()
@@ -39,6 +41,7 @@ func log_message(message: String) -> void:
 	print_rich(time + message + "\n")
 
 func _ready() -> void:
+	Scene = self.get_parent()
 	if tcp_server.listen(PORT) != OK:
 		log_message("Unable to start server.")
 		set_process(false)
@@ -108,6 +111,7 @@ func get_message(peer_id: int) -> String:
 						ship.power_down(instruction["target"])
 					else:
 						ship.power_up(instruction["target"])
+					Scene.update_labels()
 	return "OK"
 	
 func poll() -> void:

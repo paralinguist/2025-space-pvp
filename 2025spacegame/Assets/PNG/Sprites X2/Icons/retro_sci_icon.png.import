@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnm0w5hni5t18"
-path="res://.godot/imported/weapons.png-5b71e3f5e65b6047534e18f6e6b8f65c.ctex"
+uid="uid://jbilcve1p2wk"
+path="res://.godot/imported/retro_sci_icon.png-417f45301ae12620f1244b9b0c625f78.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PNG/Sprites X2/Icons/weapons.png"
-dest_files=["res://.godot/imported/weapons.png-5b71e3f5e65b6047534e18f6e6b8f65c.ctex"]
+source_file="res://Assets/PNG/Sprites X2/Icons/retro_sci_icon.png"
+dest_files=["res://.godot/imported/retro_sci_icon.png-417f45301ae12620f1244b9b0c625f78.ctex"]
 
 [params]
 

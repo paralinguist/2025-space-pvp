@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ccgemfou2b2ll"]
+[gd_scene load_steps=18 format=3 uid="uid://ccgemfou2b2ll"]
 
 [ext_resource type="PackedScene" uid="uid://b7hp126j04b4b" path="res://Scenes/test_ship.tscn" id="1_3dogw"]
 [ext_resource type="Script" uid="uid://bcr45us05q8fu" path="res://Scripts/main.gd" id="1_ak5v8"]
@@ -7,7 +7,14 @@
 [ext_resource type="FontFile" uid="uid://ddcavhli5oec3" path="res://Assets/Tektur-Regular.ttf" id="4_hb2xm"]
 [ext_resource type="PackedScene" uid="uid://ds0evjgacxbtd" path="res://Scenes/portrait.tscn" id="6_x033f"]
 [ext_resource type="Texture2D" uid="uid://de4ni4hyrprxc" path="res://Assets/PNG/Sprites X2/Missiles/spaceMissiles_029.png" id="7_rdbpf"]
-[ext_resource type="Texture2D" uid="uid://rdptta5yciii" path="res://Assets/PNG/Sprites X2/Icons/pilot.png" id="8_oho3u"]
+[ext_resource type="Texture2D" uid="uid://bwdg36wde3h1f" path="res://Assets/PNG/Sprites X2/Icons/tech_pilot_icon.png" id="8_4qg1e"]
+[ext_resource type="Texture2D" uid="uid://c43bisnvi4vih" path="res://Assets/PNG/Sprites X2/Icons/tech_sci_icon.png" id="9_040rt"]
+[ext_resource type="Texture2D" uid="uid://c8mssxso8oecc" path="res://Assets/PNG/Sprites X2/Icons/tech_weap_icon.png" id="10_dhrl2"]
+[ext_resource type="Texture2D" uid="uid://dy68v0j5dc41l" path="res://Assets/PNG/Sprites X2/Icons/tech_eng_icon.png" id="11_i0miu"]
+[ext_resource type="Texture2D" uid="uid://c64pufbx6k53a" path="res://Assets/PNG/Sprites X2/Icons/retro_pilot_icon.png" id="12_6bfml"]
+[ext_resource type="Texture2D" uid="uid://jbilcve1p2wk" path="res://Assets/PNG/Sprites X2/Icons/retro_sci_icon.png" id="13_0g4ye"]
+[ext_resource type="Texture2D" uid="uid://b5ned6scithgo" path="res://Assets/PNG/Sprites X2/Icons/retro_weap_icon.png" id="14_soh27"]
+[ext_resource type="Texture2D" uid="uid://y62lqst6sxid" path="res://Assets/PNG/Sprites X2/Icons/retro_eng_icon.png" id="15_733rx"]
 
 [sub_resource type="Theme" id="Theme_ak5v8"]
 default_font = ExtResource("4_hb2xm")
@@ -172,9 +179,9 @@ offset_bottom = 640.0
 text = ": 2"
 
 [node name="TechPilotIcon" type="Sprite2D" parent="Icons"]
-position = Vector2(25.781239, 19.774488)
-scale = Vector2(0.03789834, 0.037898343)
-texture = ExtResource("8_oho3u")
+position = Vector2(25.781, 20)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_4qg1e")
 
 [node name="LabelTechPilotPwr" type="Label" parent="Icons"]
 offset_left = 44.0
@@ -183,15 +190,87 @@ offset_right = 66.0
 offset_bottom = 35.0
 text = "1"
 
+[node name="TechScienceIcon" type="Sprite2D" parent="Icons"]
+position = Vector2(159.25, 20)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("9_040rt")
+
+[node name="LabelTechSciencePwr" type="Label" parent="Icons"]
+offset_left = 177.469
+offset_top = 12.0
+offset_right = 199.469
+offset_bottom = 35.0
+text = "1"
+
+[node name="TechWeaponIcon" type="Sprite2D" parent="Icons"]
+position = Vector2(920.25, 20)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("10_dhrl2")
+
+[node name="LabelTechWeapPwr" type="Label" parent="Icons"]
+offset_left = 938.469
+offset_top = 12.0
+offset_right = 960.469
+offset_bottom = 35.0
+text = "1"
+
+[node name="TechEngIcon" type="Sprite2D" parent="Icons"]
+position = Vector2(1051.25, 20)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("11_i0miu")
+
+[node name="LabelTechEngPwr" type="Label" parent="Icons"]
+offset_left = 1069.469
+offset_top = 12.0
+offset_right = 1091.469
+offset_bottom = 35.0
+text = "1"
+
 [node name="RetroPilotIcon" type="Sprite2D" parent="Icons"]
 position = Vector2(31, 540)
-scale = Vector2(0.03789834, 0.037898343)
-texture = ExtResource("8_oho3u")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("12_6bfml")
 
 [node name="LabelRetroPilotPwr" type="Label" parent="Icons"]
 offset_left = 49.0
 offset_top = 533.0
 offset_right = 72.0
+offset_bottom = 556.0
+text = "1"
+
+[node name="RetroSciIcon" type="Sprite2D" parent="Icons"]
+position = Vector2(157.25, 540)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("13_0g4ye")
+
+[node name="LabelRetroSciPwr" type="Label" parent="Icons"]
+offset_left = 175.25
+offset_top = 533.0
+offset_right = 198.25
+offset_bottom = 556.0
+text = "1"
+
+[node name="RetroWeapIcon" type="Sprite2D" parent="Icons"]
+position = Vector2(917.25, 540)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("14_soh27")
+
+[node name="LabelRetroWeapPwr" type="Label" parent="Icons"]
+offset_left = 935.25
+offset_top = 533.0
+offset_right = 958.25
+offset_bottom = 556.0
+text = "1"
+
+[node name="RetroEngIcon" type="Sprite2D" parent="Icons"]
+position = Vector2(1049.25, 540)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("15_733rx")
+
+[node name="LabelRetroEngPwr" type="Label" parent="Icons"]
+offset_left = 1067.25
+offset_top = 533.0
+offset_right = 1090.25
 offset_bottom = 556.0
 text = "1"
 
