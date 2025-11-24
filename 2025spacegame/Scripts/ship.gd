@@ -108,7 +108,11 @@ func get_status():
 
 func reposition_shields():
 	for s in range($ShieldSpot.get_child_count()):
+		print(s)
 		$ShieldSpot.get_child(s).position.y = s*-20
+		if s + 1 > shield_level:
+			print("Killing shield")
+			$ShieldSpot.get_child(s).queue_free()
 
 func add_shield():
 	if shield_level < 8 and not science_cooldown:
@@ -125,6 +129,9 @@ func add_shield():
 
 func consume_shield():
 	if shield_level >= 1 and not science_cooldown:
+		print("Consume requested")
+		shield_level -= 1
+		reposition_shields()
 		science_special = true
 		science_cooldown = true
 		set_science_cooldown()
