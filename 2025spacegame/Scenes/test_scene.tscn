@@ -178,30 +178,6 @@ offset_right = 962.0
 offset_bottom = 640.0
 text = ": 2"
 
-[node name="TechPilotIcon" type="Sprite2D" parent="Icons"]
-position = Vector2(25.781, 20)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("8_4qg1e")
-
-[node name="LabelTechPilotPwr" type="Label" parent="Icons"]
-offset_left = 44.0
-offset_top = 12.0
-offset_right = 66.0
-offset_bottom = 35.0
-text = "1"
-
-[node name="TechScienceIcon" type="Sprite2D" parent="Icons"]
-position = Vector2(159.25, 20)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("9_040rt")
-
-[node name="LabelTechSciencePwr" type="Label" parent="Icons"]
-offset_left = 177.469
-offset_top = 12.0
-offset_right = 199.469
-offset_bottom = 35.0
-text = "1"
-
 [node name="TechWeaponIcon" type="Sprite2D" parent="Icons"]
 position = Vector2(920.25, 20)
 scale = Vector2(0.25, 0.25)
@@ -273,6 +249,42 @@ offset_top = 533.0
 offset_right = 1090.25
 offset_bottom = 556.0
 text = "1"
+
+[node name="LabelTechPilotPwr" type="Label" parent="Icons"]
+offset_left = 44.0
+offset_top = 12.0
+offset_right = 66.0
+offset_bottom = 35.0
+text = "1"
+
+[node name="TechPilotProgress" type="TextureProgressBar" parent="Icons"]
+offset_left = 12.0
+offset_top = 7.0
+offset_right = 124.0
+offset_bottom = 115.0
+scale = Vector2(0.25, 0.25)
+fill_mode = 2
+texture_under = ExtResource("8_4qg1e")
+texture_progress = ExtResource("8_4qg1e")
+tint_progress = Color(1, 0, 0.07450981, 0.6313726)
+
+[node name="LabelTechSciencePwr" type="Label" parent="Icons"]
+offset_left = 177.469
+offset_top = 12.0
+offset_right = 199.469
+offset_bottom = 35.0
+text = "1"
+
+[node name="TechScienceProgress" type="TextureProgressBar" parent="Icons"]
+offset_left = 145.0
+offset_top = 6.0
+offset_right = 259.0
+offset_bottom = 118.0
+scale = Vector2(0.25, 0.25)
+fill_mode = 2
+texture_under = ExtResource("9_040rt")
+texture_progress = ExtResource("9_040rt")
+tint_progress = Color(1, 0, 0.07450981, 0.6313726)
 
 [connection signal="pressed" from="UI/Control/End/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/Control/Start" to="." method="_on_start_pressed"]
