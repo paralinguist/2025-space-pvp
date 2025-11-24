@@ -77,6 +77,10 @@ def add_shield():
         instruction = {"action":"shield"}
         send_instruction(instruction)
 
+def consume_shield():
+        instruction = {"action":"consume"}
+        send_instruction(instruction)
+
 def power(direction, target):
     instruction = {"action":"power", "direction":direction, "target":target}
     send_instruction(instruction)

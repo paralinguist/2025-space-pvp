@@ -37,6 +37,8 @@ while message != "quit":
         space_api.move("right")
     elif message == "shield":
         space_api.add_shield()
+    elif message == "consume":
+        space_api.consume_shield()
     elif message == "status":
         print(space_api.ship)
     elif message.split(" ")[0] in ["shoot", "power"]:
