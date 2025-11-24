@@ -105,6 +105,8 @@ func get_message(peer_id: int) -> String:
 					ship.shoot(instruction["weapon_id"])
 				elif instruction["action"] == "shield":
 					ship.add_shield()
+				elif instruction["action"] == "consume":
+					ship.consume_shield()
 				elif instruction["action"] == "power":
 					print("Eng power instruction: " + instruction["action"] + " " + instruction["direction"] + " " + instruction["target"])
 					if instruction["direction"] == "down":
