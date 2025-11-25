@@ -11,13 +11,13 @@ RED = (200, 0, 0)
 BRIGHT_RED = (255, 0, 0)
 pygame.init()
 
-ip = "10.202.176.90"
+ip = "10.184.1.111"
 port = 9876
 role = "engineer"
 team = "retro"
 space_api.connect(role, team, ip, port)
 
-port = "/dev/tty.usbmodem11301"
+port = "/dev/tty.usbmodem1101"
 baud = 115200
 ser = serial.Serial(port)
 ser.baudrate = baud
@@ -131,9 +131,25 @@ if __name__ == '__main__':
         clock.tick(60)
         if (ser.inWaiting()>0):
             data = ser.read().decode()
-            if "b" in data:
-                space_api.move("left")
-            elif "r" in data:
-                space_api.move("right")
+            if "Q" in data:
+                space_api.power("up","pilot")
+                print("Power up pilot")
+            elif "W" in data:
+                space_api.power("up","weapons")
+                print("Power up weapons")
+            elif "E" in data:
+                space_api.power("up", "science")
+                print("Power up science")
+            elif "R" in data:
+                space_api.power("down", "pilot")
+                print("Power down pilot")
+            elif "T" in data:
+                space_api.power("down", "weapons")
+                print("Power down weapons")
+            elif "Y" in data:
+                space_api.power("down", "science")
+                print("Power down science")
+
+        
 
     pygame.quit()
