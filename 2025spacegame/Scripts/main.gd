@@ -24,6 +24,18 @@ func _process(_delta: float) -> void:
 	if $TechShip.science_cooldown:
 		$Icons/TechScienceProgress.max_value = $TechShip/ScienceTimer.wait_time
 		$Icons/TechScienceProgress.value = $TechShip/ScienceTimer.time_left
+	if $TechShip.weapons_cooldown:
+		$Icons/TechWeaponsProgress.max_value = $TechShip/WeaponsTimer.wait_time
+		$Icons/TechWeaponsProgress.value = $TechShip/WeaponsTimer.time_left
+	if $RetroShip.pilot_cooldown:
+		$Icons/RetroPilotProgress.max_value = $RetroShip/PilotTimer.wait_time
+		$Icons/RetroPilotProgress.value = $RetroShip/PilotTimer.time_left
+	if $RetroShip.science_cooldown:
+		$Icons/RetroScienceProgress.max_value = $RetroShip/ScienceTimer.wait_time
+		$Icons/RetroScienceProgress.value = $RetroShip/ScienceTimer.time_left
+	if $RetroShip.weapons_cooldown:
+		$Icons/RetroWeaponsProgress.max_value = $RetroShip/WeaponsTimer.wait_time
+		$Icons/RetroWeaponsProgress.value = $RetroShip/WeaponsTimer.time_left
 
 func update_labels():
 	$Icons/LabelTechEngPwr.text = str($TechShip.available_power)
@@ -44,6 +56,6 @@ func refresh_specials():
 		$Icons/TechScienceProgress.tint_under = Color(1, 1, 1, 1)
 	if $RetroShip.science_special:
 		print("Modulating science")
-		$Icons/RetroSciIcon.self_modulate = Color(0, 0.5, 1, 1)
+		$Icons/RetroScienceProgress.tint_under = Color(0, 0.5, 1, 1)
 	else:
-		$Icons/RetroSciIcon.self_modulate = Color(1, 1, 1, 1)
+		$Icons/RetroScienceProgress.tint_under = Color(1, 1, 1, 1)

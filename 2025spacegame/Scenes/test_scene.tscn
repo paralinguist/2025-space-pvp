@@ -178,78 +178,6 @@ offset_right = 962.0
 offset_bottom = 640.0
 text = ": 2"
 
-[node name="TechWeaponIcon" type="Sprite2D" parent="Icons"]
-position = Vector2(920.25, 20)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("10_dhrl2")
-
-[node name="LabelTechWeapPwr" type="Label" parent="Icons"]
-offset_left = 938.469
-offset_top = 12.0
-offset_right = 960.469
-offset_bottom = 35.0
-text = "1"
-
-[node name="TechEngIcon" type="Sprite2D" parent="Icons"]
-position = Vector2(1051.25, 20)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("11_i0miu")
-
-[node name="LabelTechEngPwr" type="Label" parent="Icons"]
-offset_left = 1069.469
-offset_top = 12.0
-offset_right = 1091.469
-offset_bottom = 35.0
-text = "1"
-
-[node name="RetroPilotIcon" type="Sprite2D" parent="Icons"]
-position = Vector2(31, 540)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("12_6bfml")
-
-[node name="LabelRetroPilotPwr" type="Label" parent="Icons"]
-offset_left = 49.0
-offset_top = 533.0
-offset_right = 72.0
-offset_bottom = 556.0
-text = "1"
-
-[node name="RetroSciIcon" type="Sprite2D" parent="Icons"]
-position = Vector2(157.25, 540)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("13_0g4ye")
-
-[node name="LabelRetroSciPwr" type="Label" parent="Icons"]
-offset_left = 175.25
-offset_top = 533.0
-offset_right = 198.25
-offset_bottom = 556.0
-text = "1"
-
-[node name="RetroWeapIcon" type="Sprite2D" parent="Icons"]
-position = Vector2(917.25, 540)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("14_soh27")
-
-[node name="LabelRetroWeapPwr" type="Label" parent="Icons"]
-offset_left = 935.25
-offset_top = 533.0
-offset_right = 958.25
-offset_bottom = 556.0
-text = "1"
-
-[node name="RetroEngIcon" type="Sprite2D" parent="Icons"]
-position = Vector2(1049.25, 540)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("15_733rx")
-
-[node name="LabelRetroEngPwr" type="Label" parent="Icons"]
-offset_left = 1067.25
-offset_top = 533.0
-offset_right = 1090.25
-offset_bottom = 556.0
-text = "1"
-
 [node name="LabelTechPilotPwr" type="Label" parent="Icons"]
 offset_left = 44.0
 offset_top = 12.0
@@ -284,6 +212,114 @@ scale = Vector2(0.25, 0.25)
 fill_mode = 2
 texture_under = ExtResource("9_040rt")
 texture_progress = ExtResource("9_040rt")
+tint_progress = Color(1, 0, 0.07450981, 0.6313726)
+
+[node name="LabelTechWeapPwr" type="Label" parent="Icons"]
+offset_left = 938.469
+offset_top = 12.0
+offset_right = 960.469
+offset_bottom = 35.0
+text = "1"
+
+[node name="TechWeaponsProgress" type="TextureProgressBar" parent="Icons"]
+offset_left = 907.0
+offset_top = 6.0
+offset_right = 1021.0
+offset_bottom = 118.0
+scale = Vector2(0.25, 0.25)
+fill_mode = 2
+texture_under = ExtResource("10_dhrl2")
+texture_progress = ExtResource("10_dhrl2")
+tint_progress = Color(1, 0, 0.07450981, 0.6313726)
+
+[node name="LabelTechEngPwr" type="Label" parent="Icons"]
+offset_left = 1069.469
+offset_top = 12.0
+offset_right = 1091.469
+offset_bottom = 35.0
+text = "1"
+
+[node name="TechEngineerProgress" type="TextureProgressBar" parent="Icons"]
+offset_left = 1037.0
+offset_top = 6.0
+offset_right = 1151.0
+offset_bottom = 118.0
+scale = Vector2(0.25, 0.25)
+fill_mode = 2
+texture_under = ExtResource("11_i0miu")
+texture_progress = ExtResource("11_i0miu")
+tint_progress = Color(1, 0, 0.07450981, 0.6313726)
+
+[node name="LabelRetroPilotPwr" type="Label" parent="Icons"]
+offset_left = 49.0
+offset_top = 533.0
+offset_right = 72.0
+offset_bottom = 556.0
+text = "1"
+
+[node name="RetroPilotProgress" type="TextureProgressBar" parent="Icons"]
+offset_left = 17.0
+offset_top = 526.0
+offset_right = 131.0
+offset_bottom = 638.0
+scale = Vector2(0.25, 0.25)
+fill_mode = 2
+texture_under = ExtResource("12_6bfml")
+texture_progress = ExtResource("12_6bfml")
+tint_progress = Color(1, 0, 0.07450981, 0.6313726)
+
+[node name="LabelRetroSciPwr" type="Label" parent="Icons"]
+offset_left = 175.25
+offset_top = 533.0
+offset_right = 198.25
+offset_bottom = 556.0
+text = "1"
+
+[node name="RetroScienceProgress" type="TextureProgressBar" parent="Icons"]
+offset_left = 143.0
+offset_top = 526.0
+offset_right = 257.0
+offset_bottom = 638.0
+scale = Vector2(0.25, 0.25)
+fill_mode = 2
+texture_under = ExtResource("13_0g4ye")
+texture_progress = ExtResource("13_0g4ye")
+tint_progress = Color(1, 0, 0.07450981, 0.6313726)
+
+[node name="LabelRetroWeapPwr" type="Label" parent="Icons"]
+offset_left = 935.25
+offset_top = 533.0
+offset_right = 958.25
+offset_bottom = 556.0
+text = "1"
+
+[node name="RetroWeaponsProgress" type="TextureProgressBar" parent="Icons"]
+offset_left = 903.0
+offset_top = 526.0
+offset_right = 1017.0
+offset_bottom = 638.0
+scale = Vector2(0.25, 0.25)
+fill_mode = 2
+texture_under = ExtResource("14_soh27")
+texture_progress = ExtResource("14_soh27")
+tint_progress = Color(1, 0, 0.07450981, 0.6313726)
+
+[node name="LabelRetroEngPwr" type="Label" parent="Icons"]
+offset_left = 1067.25
+offset_top = 533.0
+offset_right = 1090.25
+offset_bottom = 556.0
+text = "1"
+
+[node name="RetroEngineerProgress" type="TextureProgressBar" parent="Icons"]
+offset_left = 1035.0
+offset_top = 526.0
+offset_right = 1150.0
+offset_bottom = 638.0
+scale = Vector2(0.25, 0.25)
+fill_mode = 2
+texture_under = ExtResource("15_733rx")
+texture_progress = ExtResource("15_733rx")
 tint_progress = Color(1, 0, 0.07450981, 0.6313726)
 
 [connection signal="pressed" from="UI/Control/End/Restart" to="." method="_on_restart_pressed"]
