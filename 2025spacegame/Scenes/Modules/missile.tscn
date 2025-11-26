@@ -92,3 +92,7 @@ one_shot = true
 emitting = false
 texture = ExtResource("7_4jknp")
 process_material = SubResource("ParticleProcessMaterial_5ueyg")
+
+[node name="ShotTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timeout"]

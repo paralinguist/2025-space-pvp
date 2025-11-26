@@ -101,6 +101,10 @@ def precognition():
     instruction = {"action":"precognition"}
     send_instruction(instruction)
 
+def special():
+    instruction = {"action":"special"}
+    send_instruction(instruction)
+
 def disconnect():
     print("Disconnecting...")
     global server

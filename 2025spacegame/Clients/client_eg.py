@@ -3,7 +3,8 @@ import time
 
 ip = "127.0.0.1"
 port = 9876
-role = "weapons"
+#Roles: weapons, pilot, science, engineer
+role = "engineer"
 team = "retro"
 weapon_id = 1
 
@@ -49,6 +50,8 @@ while message != "quit":
         space_api.emp()
     elif message == "precognition":
         space_api.precognition()
+    elif message == "special":
+        space_api.special()
     elif message.split(" ")[0] in ["shoot", "power"]:
         message_list = message.split(" ")
         match message_list[0]:

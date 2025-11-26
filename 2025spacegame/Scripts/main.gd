@@ -54,14 +54,35 @@ func update_labels():
 	$Icons/LabelRetroWeapPwr.text = str($RetroShip.weapon_power)
 
 func refresh_specials():
-	print("Refreshing specials")
 	if $TechShip.science_special:
-		print("Modulating science")
 		$Icons/TechScienceProgress.tint_under = Color(0, 0.5, 1, 1)
 	else:
 		$Icons/TechScienceProgress.tint_under = Color(1, 1, 1, 1)
 	if $RetroShip.science_special:
-		print("Modulating science")
 		$Icons/RetroScienceProgress.tint_under = Color(0, 0.5, 1, 1)
 	else:
 		$Icons/RetroScienceProgress.tint_under = Color(1, 1, 1, 1)
+	if $TechShip.pilot_special:
+		$Icons/TechPilotProgress.tint_under = Color(0, 0.5, 1, 1)
+	else:
+		$Icons/TechPilotProgress.tint_under = Color(1, 1, 1, 1)
+	if $RetroShip.pilot_special:
+		$Icons/RetroPilotProgress.tint_under = Color(0, 0.5, 1, 1)
+	else:
+		$Icons/RetroPilotProgress.tint_under = Color(1, 1, 1, 1)
+	if $TechShip.weapon_special:
+		$Icons/TechWeaponsProgress.tint_under = Color(0, 0.5, 1, 1)
+	else:
+		$Icons/TechWeaponsProgress.tint_under = Color(1, 1, 1, 1)
+	if $RetroShip.weapon_special:
+		$Icons/RetroWeaponsProgress.tint_under = Color(0, 0.5, 1, 1)
+	else:
+		$Icons/RetroWeaponsProgress.tint_under = Color(1, 1, 1, 1)
+	if $TechShip.engineering_special:
+		$Icons/TechEngineerProgress.tint_under = Color(0, 0.5, 1, 1)
+	else:
+		$Icons/TechEngineerProgress.tint_under = Color(1, 1, 1, 1)
+	if $RetroShip.engineering_special:
+		$Icons/RetroEngineerProgress.tint_under = Color(0, 0.5, 1, 1)
+	else:
+		$Icons/RetroEngineerProgress.tint_under = Color(1, 1, 1, 1)

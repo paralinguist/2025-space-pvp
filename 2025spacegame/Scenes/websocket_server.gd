@@ -128,9 +128,11 @@ func get_message(peer_id: int) -> String:
 					if not ship.overcharged:
 						print("Eng bonus: overcharge")
 						ship.overcharge(2)
-						Scene.update_labels()
 					else:
 						print("Can't overcharge twice")
+				elif instruction["action"] == "special":
+					ship.special("science")
+					ship.special(instruction["role"])
 	return "OK"
 	
 func poll() -> void:

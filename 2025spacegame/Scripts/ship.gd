@@ -7,7 +7,12 @@ var left_size := 113*0.615
 var right_size := 113*0.615
 var hp = 100.0
 var alive = true
+
 var dodge_rate := 0.0
+var dodge_shoot = false
+var dodge_shield = false
+var dodge_power = false
+var advanced_weapons = false
 
 var total_power = 4
 var available_power = 1
@@ -66,28 +71,40 @@ func move(dir:int):
 		position.x += dir*GRID_DISTANCE
 		if position.x < left_size or position.x > 1152-right_size:
 			position.x -= dir*GRID_DISTANCE
+		if dodge_shoot:
+			shoot("laser", true)
+		if dodge_shield:
+			add_shield(true)
+		if dodge_power:
+			overcharge(1)
 
-func shoot(weapon:String):
-	print("Shooting!")
-	print("Weapon power: " + str(weapon_power))
-	print("Weapon id: " + weapon)
-	if not weapons_cooldown and weapon_power > 0:
-		if weapon_power >= 4:
-			weapon = "lasermissile"
+func shoot(weapon:String, external=false):
+	if external:
 		for c in get_children():
 			if c is Shooter and not c.deactivated and c.weapon_type in weapon:
-				if c.weapon_type == "missile":
-					if missiles > 0:
-						missiles = missiles - 1
-						c.shoot()
+				if advanced_weapons:
+					c.shoot(3)
 				else:
 					c.shoot()
-				if c.weapon_type == "laser" and weapon_power >= 6:
-					c.double_shot()
-				if weapon_power <= 1:
 					break
-		weapons_cooldown = true
-		$WeaponsTimer.start()
+	else:
+		if not weapons_cooldown and weapon_power > 0:
+			if weapon_power >= 4:
+				weapon = "lasermissile"
+			for c in get_children():
+				if c is Shooter and not c.deactivated and c.weapon_type in weapon:
+					if c.weapon_type == "missile":
+						if missiles > 0:
+							missiles = missiles - 1
+							c.shoot()
+					else:
+						c.shoot()
+					if c.weapon_type == "laser" and weapon_power >= 6:
+						c.shoot(2)
+					if weapon_power <= 1:
+						break
+			weapons_cooldown = true
+			$WeaponsTimer.start()
 
 func get_weapons():
 	var weapons = {}
@@ -116,27 +133,36 @@ func reposition_shields():
 		else:
 			$ShieldSpot.get_child(s).position.y = s*-20
 
-func add_shield():
-	if shield_level < 8 and not science_cooldown:
+func add_shield(external = false):
+	if external:
 		for c in get_children():
 			if c is Science:
 				if not c.deactivated:
-					science_cooldown = true
-					set_science_cooldown()
 					var new_shield := shield.instantiate()
 					$ShieldSpot.add_child(new_shield)
 					shield_level += 1
 					reposition_shields()
 				break
+	else:
+		if shield_level < 8 and not science_cooldown:
+			for c in get_children():
+				if c is Science:
+					if not c.deactivated:
+						science_cooldown = true
+						set_science_cooldown()
+						var new_shield := shield.instantiate()
+						$ShieldSpot.add_child(new_shield)
+						shield_level += 1
+						reposition_shields()
+					break
 
 func consume_shield():
 	if shield_level >= 1 and not science_cooldown:
 		shield_level -= 1
 		reposition_shields()
-		science_special = true
+		special("science")
 		science_cooldown = true
 		set_science_cooldown()
-		self.get_parent().refresh_specials()
 
 func set_pilot_cooldown():
 	if pilot_power == 0:
@@ -182,6 +208,43 @@ func set_science_cooldown():
 		elif science_power == 6:
 			$ScienceTimer.wait_time = 3
 		$ScienceTimer.start()
+
+func special(module):
+	if not dodge_shoot and not dodge_shield and not dodge_power:
+		if module == "pilot" and not pilot_special:
+			pilot_special = true
+		elif module == "weapons" and not weapon_special:
+			weapon_special = true
+		elif module == "engineer" and not engineering_special:
+			engineering_special = true
+		elif module == "science" and not science_special:
+			science_special = true
+		if pilot_special and weapon_special:
+			dodge_shoot = true
+			$SpecialTimer.start()
+		elif pilot_special and science_special:
+			dodge_shield = true
+			$SpecialTimer.start()
+		elif pilot_special and engineering_special:
+			dodge_power = true
+			$SpecialTimer.start()
+		elif weapon_special and science_special:
+			advanced_weapons = true
+			shoot("lasers", true)
+			advanced_weapons = false
+			weapon_special = false
+			science_special = false
+		elif weapon_special and engineering_special:
+			missiles = 12
+			advanced_weapons = true
+			shoot("missile", true)
+			advanced_weapons = false
+			weapon_special = false
+			science_special = false
+		elif science_special and engineering_special:
+			overcharge(6, true)
+			$SpecialTimer.start()
+		self.get_parent().refresh_specials()
 
 func set_weapons_cooldown():
 	if weapon_power == 0:
@@ -252,12 +315,14 @@ func take_damage(dmg:float, external=true):
 					c.queue_free()
 			set_process(false)
 
-func overcharge(amount):
+func overcharge(amount, external = false):
 	available_power += amount
 	if amount > 2:
 		take_damage(1, false)
 	overcharged = true
-	$OverchargeTimer.start()
+	if not external:
+		$OverchargeTimer.start()
+	self.get_parent().update_labels()
 
 func add_missiles(num):
 	missiles += num
@@ -291,3 +356,15 @@ func _on_overcharge_timer_timeout() -> void:
 	pilot_power = 1
 	print("overcharge finished")
 	self.get_parent().update_labels()
+
+func _on_special_timer_timeout() -> void:
+	dodge_shoot = false
+	dodge_shield = false
+	if dodge_power:
+		dodge_power = false
+		_on_overcharge_timer_timeout()
+	pilot_special = false
+	weapon_special = false
+	engineering_special = false
+	science_special = false
+	self.get_parent().refresh_specials()
