@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ccgemfou2b2ll"]
+[gd_scene load_steps=19 format=3 uid="uid://ccgemfou2b2ll"]
 
 [ext_resource type="PackedScene" uid="uid://b7hp126j04b4b" path="res://Scenes/test_ship.tscn" id="1_3dogw"]
 [ext_resource type="Script" uid="uid://bcr45us05q8fu" path="res://Scripts/main.gd" id="1_ak5v8"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://jbilcve1p2wk" path="res://Assets/PNG/Sprites X2/Icons/retro_sci_icon.png" id="13_0g4ye"]
 [ext_resource type="Texture2D" uid="uid://b5ned6scithgo" path="res://Assets/PNG/Sprites X2/Icons/retro_weap_icon.png" id="14_soh27"]
 [ext_resource type="Texture2D" uid="uid://y62lqst6sxid" path="res://Assets/PNG/Sprites X2/Icons/retro_eng_icon.png" id="15_733rx"]
+[ext_resource type="AudioStream" uid="uid://d20s8aqmatb1u" path="res://Assets/SFX/explosion.mp3" id="16_040rt"]
 
 [sub_resource type="Theme" id="Theme_ak5v8"]
 default_font = ExtResource("4_hb2xm")
@@ -321,6 +322,9 @@ fill_mode = 2
 texture_under = ExtResource("15_733rx")
 texture_progress = ExtResource("15_733rx")
 tint_progress = Color(1, 0, 0.07450981, 0.6313726)
+
+[node name="ShipExplosion" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_040rt")
 
 [connection signal="pressed" from="UI/Control/End/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/Control/Start" to="." method="_on_start_pressed"]

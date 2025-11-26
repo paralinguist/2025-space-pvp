@@ -12,6 +12,7 @@ var dodge_rate := 0.0
 var dodge_shoot = false
 var dodge_shield = false
 var dodge_power = false
+var safety_limits_off = false
 var advanced_weapons = false
 
 var total_power = 4
@@ -138,6 +139,7 @@ func add_shield(external = false):
 		for c in get_children():
 			if c is Science:
 				if not c.deactivated:
+					$ShieldUpSound.play()
 					var new_shield := shield.instantiate()
 					$ShieldSpot.add_child(new_shield)
 					shield_level += 1
@@ -148,6 +150,7 @@ func add_shield(external = false):
 			for c in get_children():
 				if c is Science:
 					if not c.deactivated:
+						$ShieldUpSound.play()
 						science_cooldown = true
 						set_science_cooldown()
 						var new_shield := shield.instantiate()
@@ -163,6 +166,7 @@ func consume_shield():
 		special("science")
 		science_cooldown = true
 		set_science_cooldown()
+		$ShieldDownSound.play()
 
 func set_pilot_cooldown():
 	if pilot_power == 0:
@@ -242,6 +246,7 @@ func special(module):
 			weapon_special = false
 			science_special = false
 		elif science_special and engineering_special:
+			safety_limits_off = true
 			overcharge(6, true)
 			$SpecialTimer.start()
 		self.get_parent().refresh_specials()
@@ -304,6 +309,7 @@ func take_damage(dmg:float, external=true):
 	else:
 		hp -= dmg*1
 		if hp <= 0.0:
+			get_parent().play_explosion()
 			UI.visible = true
 			UI.get_node("Control/End").visible = true
 			UI.get_node("Control/End/Label").text = win_message
@@ -316,6 +322,7 @@ func take_damage(dmg:float, external=true):
 			set_process(false)
 
 func overcharge(amount, external = false):
+	$PowerUpSound.play()
 	available_power += amount
 	if amount > 2:
 		take_damage(1, false)
@@ -360,8 +367,9 @@ func _on_overcharge_timer_timeout() -> void:
 func _on_special_timer_timeout() -> void:
 	dodge_shoot = false
 	dodge_shield = false
-	if dodge_power:
+	if dodge_power or safety_limits_off:
 		dodge_power = false
+		safety_limits_off = false
 		_on_overcharge_timer_timeout()
 	pilot_special = false
 	weapon_special = false

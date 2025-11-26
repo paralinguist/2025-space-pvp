@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dglnjl27t08n8"
+path="res://.godot/imported/minigame lose.mp3-e947190a953301faa9dddf994c678081.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/minigame lose.mp3"
+dest_files=["res://.godot/imported/minigame lose.mp3-e947190a953301faa9dddf994c678081.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

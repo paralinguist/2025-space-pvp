@@ -20,7 +20,7 @@ func shoot(num_shots = 1):
 		$ShotTimer.start()
 
 func _shoot():
-	print(shots_left)
+	$FiringSound.play()
 	if $Cooldown.is_stopped():
 		var new_bullet : Bullet = LaserBullet.instantiate()
 		add_child(new_bullet)

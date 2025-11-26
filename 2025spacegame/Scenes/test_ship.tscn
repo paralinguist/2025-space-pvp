@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7hp126j04b4b"]
+[gd_scene load_steps=8 format=3 uid="uid://b7hp126j04b4b"]
 
 [ext_resource type="Script" uid="uid://h35ovikoq1pt" path="res://Scripts/ship.gd" id="1_x3s1d"]
+[ext_resource type="AudioStream" uid="uid://di5s0axjsfts5" path="res://Assets/SFX/shield_up.mp3" id="3_5mm7q"]
 [ext_resource type="Texture2D" uid="uid://c15h7gc4pojbw" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_003.png" id="4_t2t7e"]
+[ext_resource type="AudioStream" uid="uid://cfp4je6nbguou" path="res://Assets/SFX/shield_down.mp3" id="4_x3s1d"]
+[ext_resource type="AudioStream" uid="uid://kcwmjth8jqxi" path="res://Assets/SFX/power_up.mp3" id="5_x3s1d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6vk2"]
 bg_color = Color(0.368627, 0.368627, 0.368627, 0.576471)
@@ -76,6 +79,15 @@ one_shot = true
 
 [node name="SpecialTimer" type="Timer" parent="."]
 wait_time = 12.0
+
+[node name="ShieldUpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_5mm7q")
+
+[node name="ShieldDownSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_x3s1d")
+
+[node name="PowerUpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_x3s1d")
 
 [connection signal="timeout" from="PilotTimer" to="." method="_on_pilot_timer_timeout"]
 [connection signal="timeout" from="ScienceTimer" to="." method="_on_science_timer_timeout"]

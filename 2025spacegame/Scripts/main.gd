@@ -86,3 +86,6 @@ func refresh_specials():
 		$Icons/RetroEngineerProgress.tint_under = Color(0, 0.5, 1, 1)
 	else:
 		$Icons/RetroEngineerProgress.tint_under = Color(1, 1, 1, 1)
+
+func play_explosion():
+	$ShipExplosion.play()

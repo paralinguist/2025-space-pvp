@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b3m26n5la8qph"
+path="res://.godot/imported/minigame win.mp3-3651d635dc576261ddd38ea6d6a24a36.mp3str"
+
+[deps]
+
+source_file="res://Assets/SFX/minigame win.mp3"
+dest_files=["res://.godot/imported/minigame win.mp3-3651d635dc576261ddd38ea6d6a24a36.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

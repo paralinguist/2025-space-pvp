@@ -4,7 +4,7 @@ import time
 ip = "127.0.0.1"
 port = 9876
 #Roles: weapons, pilot, science, engineer
-role = "engineer"
+role = "weapons"
 team = "retro"
 weapon_id = 1
 
