@@ -107,6 +107,9 @@ func get_message(peer_id: int) -> String:
 					ship.add_shield()
 				elif instruction["action"] == "consume":
 					ship.consume_shield()
+				elif instruction["action"] == "craft":
+					print("Crafting missiles")
+					ship.add_missiles(2)
 				elif instruction["action"] == "power":
 					print("Eng power instruction: " + instruction["action"] + " " + instruction["direction"] + " " + instruction["target"])
 					if instruction["direction"] == "down":
@@ -114,6 +117,20 @@ func get_message(peer_id: int) -> String:
 					else:
 						ship.power_up(instruction["target"])
 					Scene.update_labels()
+				elif instruction["action"] == "emp":
+					if instruction["team"] == "retro":
+						TechShip.emp_hit()
+					else:
+						RetroShip.emp_hit()
+				elif instruction["action"] == "precognition":
+					ship.precognition = true
+				elif instruction["action"] == "overcharge":
+					if not ship.overcharged:
+						print("Eng bonus: overcharge")
+						ship.overcharge(2)
+						Scene.update_labels()
+					else:
+						print("Can't overcharge twice")
 	return "OK"
 	
 func poll() -> void:

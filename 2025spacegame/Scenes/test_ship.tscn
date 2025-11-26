@@ -70,7 +70,12 @@ wait_time = 6.0
 [node name="MissileRegenTimer" type="Timer" parent="."]
 wait_time = 6.0
 
+[node name="OverchargeTimer" type="Timer" parent="."]
+wait_time = 12.0
+one_shot = true
+
 [connection signal="timeout" from="PilotTimer" to="." method="_on_pilot_timer_timeout"]
 [connection signal="timeout" from="ScienceTimer" to="." method="_on_science_timer_timeout"]
 [connection signal="timeout" from="WeaponsTimer" to="." method="_on_weapons_timer_timeout"]
 [connection signal="timeout" from="MissileRegenTimer" to="." method="_on_missile_regen_timer_timeout"]
+[connection signal="timeout" from="OverchargeTimer" to="." method="_on_overcharge_timer_timeout"]

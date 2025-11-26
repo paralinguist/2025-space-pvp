@@ -27,6 +27,9 @@ func _process(_delta: float) -> void:
 	if $TechShip.weapons_cooldown:
 		$Icons/TechWeaponsProgress.max_value = $TechShip/WeaponsTimer.wait_time
 		$Icons/TechWeaponsProgress.value = $TechShip/WeaponsTimer.time_left
+	if $TechShip.overcharged:
+		$Icons/TechEngineerProgress.max_value = $TechShip/OverchargeTimer.wait_time
+		$Icons/TechEngineerProgress.value = $TechShip/OverchargeTimer.time_left
 	if $RetroShip.pilot_cooldown:
 		$Icons/RetroPilotProgress.max_value = $RetroShip/PilotTimer.wait_time
 		$Icons/RetroPilotProgress.value = $RetroShip/PilotTimer.time_left
@@ -36,6 +39,9 @@ func _process(_delta: float) -> void:
 	if $RetroShip.weapons_cooldown:
 		$Icons/RetroWeaponsProgress.max_value = $RetroShip/WeaponsTimer.wait_time
 		$Icons/RetroWeaponsProgress.value = $RetroShip/WeaponsTimer.time_left
+	if $RetroShip.overcharged:
+		$Icons/RetroEngineerProgress.max_value = $RetroShip/OverchargeTimer.wait_time
+		$Icons/RetroEngineerProgress.value = $RetroShip/OverchargeTimer.time_left
 
 func update_labels():
 	$Icons/LabelTechEngPwr.text = str($TechShip.available_power)

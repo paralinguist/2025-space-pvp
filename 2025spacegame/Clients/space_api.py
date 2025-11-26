@@ -2,7 +2,7 @@ from websocket import create_connection
 import threading
 import json
 
-api_version = "0.92"
+api_version = "0.93"
 client_type = "python"
 
 ship = { "total_power" : 4,
@@ -83,6 +83,22 @@ def consume_shield():
 
 def power(direction, target):
     instruction = {"action":"power", "direction":direction, "target":target}
+    send_instruction(instruction)
+
+def overcharge():
+    instruction = {"action":"overcharge"}
+    send_instruction(instruction)
+
+def craft():
+    instruction  = {"action":"craft"}
+    send_instruction(instruction)
+
+def emp():
+    instruction = {"action":"emp"}
+    send_instruction(instruction)
+
+def precognition():
+    instruction = {"action":"precognition"}
     send_instruction(instruction)
 
 def disconnect():

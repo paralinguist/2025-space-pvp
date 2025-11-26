@@ -1,7 +1,7 @@
 import space_api
 import time
 
-ip = "10.184.1.111"
+ip = "127.0.0.1"
 port = 9876
 role = "weapons"
 team = "retro"
@@ -41,6 +41,14 @@ while message != "quit":
         space_api.consume_shield()
     elif message == "status":
         print(space_api.ship)
+    elif message == "overcharge":
+        space_api.overcharge()
+    elif message == "craft":
+        space_api.craft()
+    elif message == "emp":
+        space_api.emp()
+    elif message == "precognition":
+        space_api.precognition()
     elif message.split(" ")[0] in ["shoot", "power"]:
         message_list = message.split(" ")
         match message_list[0]:

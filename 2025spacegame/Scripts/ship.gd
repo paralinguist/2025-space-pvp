@@ -15,6 +15,8 @@ var pilot_power = 1
 var science_power = 1
 var weapon_power = 1
 var shield_level = 0
+var overcharged = false
+var precognition = false
 
 var pilot_special = false
 var science_special = false
@@ -26,6 +28,7 @@ var science_cooldown = false
 var weapons_cooldown = false
 
 var missiles = 2
+var max_missiles = 12
 
 const engine = preload("res://Scenes/Modules/engine.tscn")
 const science = preload("res://Scenes/Modules/science.tscn")
@@ -209,6 +212,7 @@ func power_down(module):
 		weapon_power -= 1
 		set_weapons_cooldown()
 
+#Squinting at this - looks like increasing power to a module will reset the cooldown. Cool, I guess?
 func power_up(module):
 	if module == "pilot" and available_power >= 1:
 		available_power -= 1
@@ -225,20 +229,44 @@ func power_up(module):
 		weapon_power += 1
 		set_weapons_cooldown()
 
-func take_damage(dmg:float):
-	hp -= dmg*1
-	if hp <= 0.0:
-		UI.visible = true
-		UI.get_node("Control/End").visible = true
-		UI.get_node("Control/End/Label").text = win_message
-		alive = false
-		for c in get_children():
-			if c is ShipModule:
-				c.die()
-			else:
-				c.queue_free()
-		set_process(false)
+func take_damage(dmg:float, external=true):
+	if external and precognition:
+		if randi_range(0,1) and false:
+			print("dodging left")
+			position.x = left_size
+		else:
+			position.x = 1152-right_size-GRID_DISTANCE
+			print("dodging right")
+		precognition = false
+	else:
+		hp -= dmg*1
+		if hp <= 0.0:
+			UI.visible = true
+			UI.get_node("Control/End").visible = true
+			UI.get_node("Control/End/Label").text = win_message
+			alive = false
+			for c in get_children():
+				if c is ShipModule:
+					c.die()
+				else:
+					c.queue_free()
+			set_process(false)
 
+func overcharge(amount):
+	available_power += amount
+	if amount > 2:
+		take_damage(1, false)
+	overcharged = true
+	$OverchargeTimer.start()
+
+func add_missiles(num):
+	missiles += num
+	if missiles > max_missiles:
+		missiles = max_missiles
+
+func emp_hit():
+	shield_level = 0
+	reposition_shields()
 
 func _on_pilot_timer_timeout() -> void:
 	pilot_cooldown = false
@@ -250,6 +278,16 @@ func _on_weapons_timer_timeout() -> void:
 	weapons_cooldown = false
 
 func _on_missile_regen_timer_timeout() -> void:
-	missiles = missiles + 1
+	add_missiles(1)
 	if weapon_power < 3:
 		$MissileRegenTimer.stop()
+
+#Currently returns all modules to 1 power with 1 available
+func _on_overcharge_timer_timeout() -> void:
+	overcharged = false
+	available_power = 1
+	science_power = 1
+	weapon_power = 1
+	pilot_power = 1
+	print("overcharge finished")
+	self.get_parent().update_labels()
