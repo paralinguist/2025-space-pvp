@@ -1,6 +1,7 @@
 class_name Ship extends Node2D
 @export var UI: CanvasLayer
 @export var win_message := "Tech Ship Survived"
+@export var team := "tech"
 const shield  = preload("res://Scenes/shield.tscn")
 const GRID_DISTANCE = 32
 var left_size := 113*0.615
@@ -51,11 +52,22 @@ func spawn() -> void:
 		add_child(new_components[i])
 		new_components[i].position = Vector2(52*i-104, 0)
 		new_components[i].visible = false
+		if new_components[i] is Engineer:
+			if team == "retro":
+				new_components[i].set_retro()
+		elif new_components[i] is Shooter and new_components[i].weapon_type == "laser":
+			if team == "retro":
+				new_components[i].set_retro()
+
 func start():
 	randomize()
 	for c in get_children():
 		if c is ShipModule:
 			c.visible = true
+	if team == "retro":
+		$Retro.visible = true
+		$LeftWing.visible = false
+		$RightWing.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

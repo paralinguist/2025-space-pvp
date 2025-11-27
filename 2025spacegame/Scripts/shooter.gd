@@ -13,6 +13,13 @@ func _on_laser_timer_timeout() -> void:
 		if $LaserRayCast.get_collider() is ShipModule:
 			$LaserRayCast.get_collider().get_hit()
 
+func set_retro():
+	$Retro.visible = true
+	$Body.visible = false
+	$Top2.visible = false
+	$Gun.visible = false
+	$Exhaust.visible = false
+
 func shoot(num_shots = 1):
 	shots_left = num_shots - 1
 	_shoot()

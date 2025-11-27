@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cb8x43y03yld0"]
+[gd_scene load_steps=13 format=3 uid="uid://cb8x43y03yld0"]
 
 [ext_resource type="Script" uid="uid://cnlrj6cvkuba4" path="res://Scripts/engine.gd" id="1_iguxc"]
 [ext_resource type="Texture2D" uid="uid://c2je0ut3hjdil" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_027.png" id="1_m7gxp"]
 [ext_resource type="Texture2D" uid="uid://dqxq6koyxcc68" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_016.png" id="2_iguxc"]
 [ext_resource type="Texture2D" uid="uid://css12ntxjdlxs" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_021.png" id="3_88va6"]
+[ext_resource type="Texture2D" uid="uid://bc6gj33ortxh7" path="res://Assets/PNG/thomas/engineer_retro.png" id="4_b56ab"]
 [ext_resource type="Texture2D" uid="uid://bpigsecdx1o2t" path="res://Assets/PNG/Sprites X2/Station/spaceStation_005.png" id="4_m7gxp"]
 [ext_resource type="Texture2D" uid="uid://hx7y3x2wrpq3" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_008.png" id="5_t3408"]
 [ext_resource type="Texture2D" uid="uid://d2wnivcsihaxs" path="res://Assets/PNG/Sprites X2/Effects/spaceEffects_009.png" id="7_88va6"]
@@ -49,24 +50,34 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_iguxc")
 flip_v = true
 
+[node name="Retro" type="Sprite2D" parent="Body"]
+visible = false
+position = Vector2(-2.000001, 14.977547)
+scale = Vector2(0.15168539, 0.15168537)
+texture = ExtResource("4_b56ab")
+
 [node name="Exhaust" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, 74)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_88va6")
 
 [node name="LeftSide" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 position = Vector2(-16, 0)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_m7gxp")
 
 [node name="RightSide" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 position = Vector2(16, 0)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_m7gxp")
 
 [node name="Top" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -51)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_t3408")

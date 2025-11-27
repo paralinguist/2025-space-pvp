@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dd8svo8mdvsfw"]
+[gd_scene load_steps=13 format=3 uid="uid://dd8svo8mdvsfw"]
 
 [ext_resource type="Script" uid="uid://5d1sjbqxux7e" path="res://Scripts/shooter.gd" id="1_ffxur"]
 [ext_resource type="Texture2D" uid="uid://dqxq6koyxcc68" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_016.png" id="1_rr6fe"]
 [ext_resource type="Texture2D" uid="uid://b1f2tf2bv7t7b" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_002.png" id="2_rr6fe"]
+[ext_resource type="Texture2D" uid="uid://brsqbf00knqed" path="res://Assets/PNG/thomas/weapon_retro.png" id="3_dkqqs"]
 [ext_resource type="Texture2D" uid="uid://cpxbudx4vymlk" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_020.png" id="3_ffxur"]
 [ext_resource type="Texture2D" uid="uid://bpigsecdx1o2t" path="res://Assets/PNG/Sprites X2/Station/spaceStation_005.png" id="4_31r6i"]
 [ext_resource type="Texture2D" uid="uid://d2wnivcsihaxs" path="res://Assets/PNG/Sprites X2/Effects/spaceEffects_009.png" id="6_4fo1o"]
@@ -30,6 +31,12 @@ color_ramp = SubResource("GradientTexture1D_xqlsx")
 [node name="Laser" type="Area2D" node_paths=PackedStringArray("particles")]
 script = ExtResource("1_ffxur")
 particles = NodePath("Explosion")
+
+[node name="Retro" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(3, -24.000008)
+scale = Vector2(0.18684211, 0.18684211)
+texture = ExtResource("3_dkqqs")
 
 [node name="Body" type="Node2D" parent="."]
 

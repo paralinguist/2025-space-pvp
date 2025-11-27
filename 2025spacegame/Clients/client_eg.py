@@ -1,7 +1,7 @@
 import space_api
 import time
 
-ip = "10.202.178.198"
+ip = "127.0.0.1"
 port = 9876
 #Roles: weapons, pilot, science, engineer
 role = "science"

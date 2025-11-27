@@ -5,7 +5,6 @@ var game_started = false
 func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
 
-
 func _on_start_pressed() -> void:
 	$UI/Control/Start.visible = false
 	$UI.visible = false
