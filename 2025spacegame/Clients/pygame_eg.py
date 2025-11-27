@@ -149,7 +149,11 @@ if __name__ == '__main__':
             elif "Y" in data:
                 space_api.power("down", "science")
                 print("Power down science")
-
-        
+            elif "X" in data:
+                space_api.special()
+                print("Triggering special")
+            elif "O" in data:
+                space_api.overcharge()
+                print("Overcharge")
 
     pygame.quit()

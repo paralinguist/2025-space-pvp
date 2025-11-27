@@ -1,10 +1,10 @@
 import space_api
 import time
 
-ip = "127.0.0.1"
+ip = "10.202.178.198"
 port = 9876
 #Roles: weapons, pilot, science, engineer
-role = "weapons"
+role = "science"
 team = "retro"
 weapon_id = 1
 
