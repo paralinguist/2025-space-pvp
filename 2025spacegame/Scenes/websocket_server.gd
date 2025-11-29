@@ -1,4 +1,29 @@
 class_name WebSocketServer extends Node
+
+var started = false
+var Scene
+const PORT: int = 9876
+const TECH_TEAM: int = 0
+const RETRO_TEAM: int = 1
+
+var api_version := "0.93"
+var tcp_server := TCPServer.new()
+var socket := WebSocketPeer.new()
+var pending_peers: Array[PendingPeer] = []
+var peers: Dictionary
+var clients: Dictionary
+
+@export var TechShip: Ship
+@export var RetroShip: Ship
+
+@export var handshake_timeout := 3000
+
+signal message_received(peer_id: int, message: String)
+signal client_connected(peer_id: int)
+signal new_client(peer_id: int, role: String, team: int)
+signal client_disconnected(peer_id: int)
+#signal action(role: String, team: int, action: String)
+
 class PendingPeer:
 	var connect_time: int
 	var tcp: StreamPeerTCP
@@ -9,32 +34,6 @@ class PendingPeer:
 		tcp = p_tcp
 		connection = p_tcp
 		connect_time = Time.get_ticks_msec()
-
-
-const PORT: int = 9876
-const TECH_TEAM: int = 0
-const RETRO_TEAM: int = 1
-
-var Scene
-
-var api_version := "0.92"
-var tcp_server := TCPServer.new()
-var socket := WebSocketPeer.new()
-var pending_peers: Array[PendingPeer] = []
-var peers: Dictionary
-var clients: Dictionary
-
-@export var TechShip: Ship
-@export var RetroShip: Ship
-
-
-@export var handshake_timeout := 3000
-
-signal message_received(peer_id: int, message: String)
-signal client_connected(peer_id: int)
-signal new_client(peer_id: int, role: String, team: int)
-signal client_disconnected(peer_id: int)
-#signal action(role: String, team: int, action: String)
 
 func log_message(message: String) -> void:
 	var time := "[color=#aaaaaa] %s |[/color] " % Time.get_time_string_from_system()
@@ -88,12 +87,13 @@ func get_message(peer_id: int) -> String:
 			if instruction["action"] == "join":
 				print(instruction["team"] + " " + instruction["role"] + " has joined!" + "(API:" + instruction["version"] + ")")
 				clients[peer_id] = {"team":instruction["team"], "role":instruction["role"]}
+				Scene.show_module(instruction["role"], instruction["team"])
 				emit_signal("new_client", clients[peer_id])
 				if instruction["role"] == "weapons":
 					send_weapon_info(peer_id)
 				elif instruction["role"] == "pilot":
 					pass
-			else:
+			elif Scene.game_started:
 				var ship = TechShip
 				if clients[peer_id]["team"] == "retro":
 					ship = RetroShip
@@ -134,6 +134,8 @@ func get_message(peer_id: int) -> String:
 				elif instruction["action"] == "special":
 					ship.special("science")
 					ship.special(instruction["role"])
+			else:
+				print("Game not started, not accepting commands")
 	return "OK"
 	
 func poll() -> void:

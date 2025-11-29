@@ -9,6 +9,7 @@ func _ready() -> void:
 
 func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
+	game_started = true
 
 func _on_start_pressed() -> void:
 	$UI/Control/Start.visible = false
@@ -18,6 +19,28 @@ func _on_start_pressed() -> void:
 	$TechShip.start()
 	$TechPortraits/TechPilot.visible = true
 	$TechPortraits/TechPilot.speak("Let's gooooo!")
+	for c in $Icons.get_children():
+		c.visible = true
+
+func show_module(module, team):
+	if team == "tech":
+		if module == "pilot":
+			$Icons/TechPilotProgress.visible = true
+		elif module == "science":
+			$Icons/TechScienceProgress.visible = true
+		elif module == "weapons":
+			$Icons/TechWeaponsProgress.visible = true
+		elif module == "engineer":
+			$Icons/TechEngineerProgress.visible = true
+	else:
+		if module == "pilot":
+			$Icons/RetroPilotProgress.visible = true
+		elif module == "science":
+			$Icons/RetroScienceProgress.visible = true
+		elif module == "weapons":
+			$Icons/RetroWeaponsProgress.visible = true
+		elif module == "engineer":
+			$Icons/RetroEngineerProgress.visible = true
 
 func _process(_delta: float) -> void:
 	$Icons/LabelTechMissiles.text = ": " + str($TechShip.missiles)

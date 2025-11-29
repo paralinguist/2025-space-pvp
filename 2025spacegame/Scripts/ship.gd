@@ -61,6 +61,9 @@ func spawn() -> void:
 
 func start():
 	randomize()
+	$LeftWing.visible = true
+	$RightWing.visible = true
+	$HPBar.visible = true
 	for c in get_children():
 		if c is ShipModule:
 			c.visible = true
@@ -324,6 +327,7 @@ func take_damage(dmg:float, external=true):
 			UI.get_node("Control/End").visible = true
 			UI.get_node("Control/End/Label").text = win_message
 			UI.get_node("Control/IPLabel").visible = false
+			get_parent().game_started = false
 			alive = false
 			for c in get_children():
 				if c is ShipModule:

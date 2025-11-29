@@ -170,12 +170,14 @@ autostart = true
 [node name="Icons" type="Node2D" parent="."]
 
 [node name="TechMissiles" type="Sprite2D" parent="Icons"]
+visible = false
 position = Vector2(912.99994, 111.999985)
 rotation = 0.61086524
 scale = Vector2(0.45098367, 0.4509837)
 texture = ExtResource("7_rdbpf")
 
 [node name="LabelTechMissiles" type="Label" parent="Icons"]
+visible = false
 offset_left = 922.0
 offset_top = 104.0
 offset_right = 962.0
@@ -183,12 +185,14 @@ offset_bottom = 127.0
 text = ": 2"
 
 [node name="RetroMissiles" type="Sprite2D" parent="Icons"]
+visible = false
 position = Vector2(912.99994, 624.99994)
 rotation = 0.61086524
 scale = Vector2(0.45098367, 0.4509837)
 texture = ExtResource("7_rdbpf")
 
 [node name="LabelRetroMissiles" type="Label" parent="Icons"]
+visible = false
 offset_left = 922.0
 offset_top = 617.0
 offset_right = 962.0
@@ -196,6 +200,7 @@ offset_bottom = 640.0
 text = ": 2"
 
 [node name="LabelTechPilotPwr" type="Label" parent="Icons"]
+visible = false
 offset_left = 44.0
 offset_top = 12.0
 offset_right = 66.0
@@ -203,6 +208,7 @@ offset_bottom = 35.0
 text = "1"
 
 [node name="TechPilotProgress" type="TextureProgressBar" parent="Icons"]
+visible = false
 offset_left = 12.0
 offset_top = 7.0
 offset_right = 124.0
@@ -214,6 +220,7 @@ texture_progress = ExtResource("8_4qg1e")
 tint_progress = Color(1, 0, 0.07450981, 0.6313726)
 
 [node name="LabelTechSciencePwr" type="Label" parent="Icons"]
+visible = false
 offset_left = 177.469
 offset_top = 12.0
 offset_right = 199.469
@@ -221,6 +228,7 @@ offset_bottom = 35.0
 text = "1"
 
 [node name="TechScienceProgress" type="TextureProgressBar" parent="Icons"]
+visible = false
 offset_left = 145.0
 offset_top = 6.0
 offset_right = 259.0
@@ -232,6 +240,7 @@ texture_progress = ExtResource("9_040rt")
 tint_progress = Color(1, 0, 0.07450981, 0.6313726)
 
 [node name="LabelTechWeapPwr" type="Label" parent="Icons"]
+visible = false
 offset_left = 938.469
 offset_top = 12.0
 offset_right = 960.469
@@ -239,6 +248,7 @@ offset_bottom = 35.0
 text = "1"
 
 [node name="TechWeaponsProgress" type="TextureProgressBar" parent="Icons"]
+visible = false
 offset_left = 907.0
 offset_top = 6.0
 offset_right = 1021.0
@@ -250,6 +260,7 @@ texture_progress = ExtResource("10_dhrl2")
 tint_progress = Color(1, 0, 0.07450981, 0.6313726)
 
 [node name="LabelTechEngPwr" type="Label" parent="Icons"]
+visible = false
 offset_left = 1069.469
 offset_top = 12.0
 offset_right = 1091.469
@@ -257,6 +268,7 @@ offset_bottom = 35.0
 text = "1"
 
 [node name="TechEngineerProgress" type="TextureProgressBar" parent="Icons"]
+visible = false
 offset_left = 1037.0
 offset_top = 6.0
 offset_right = 1151.0
@@ -268,6 +280,7 @@ texture_progress = ExtResource("11_i0miu")
 tint_progress = Color(1, 0, 0.07450981, 0.6313726)
 
 [node name="LabelRetroPilotPwr" type="Label" parent="Icons"]
+visible = false
 offset_left = 49.0
 offset_top = 533.0
 offset_right = 72.0
@@ -275,6 +288,7 @@ offset_bottom = 556.0
 text = "1"
 
 [node name="RetroPilotProgress" type="TextureProgressBar" parent="Icons"]
+visible = false
 offset_left = 17.0
 offset_top = 526.0
 offset_right = 131.0
@@ -286,6 +300,7 @@ texture_progress = ExtResource("12_6bfml")
 tint_progress = Color(1, 0, 0.07450981, 0.6313726)
 
 [node name="LabelRetroSciPwr" type="Label" parent="Icons"]
+visible = false
 offset_left = 175.25
 offset_top = 533.0
 offset_right = 198.25
@@ -293,6 +308,7 @@ offset_bottom = 556.0
 text = "1"
 
 [node name="RetroScienceProgress" type="TextureProgressBar" parent="Icons"]
+visible = false
 offset_left = 143.0
 offset_top = 526.0
 offset_right = 257.0
@@ -304,6 +320,7 @@ texture_progress = ExtResource("13_0g4ye")
 tint_progress = Color(1, 0, 0.07450981, 0.6313726)
 
 [node name="LabelRetroWeapPwr" type="Label" parent="Icons"]
+visible = false
 offset_left = 935.25
 offset_top = 533.0
 offset_right = 958.25
@@ -311,6 +328,7 @@ offset_bottom = 556.0
 text = "1"
 
 [node name="RetroWeaponsProgress" type="TextureProgressBar" parent="Icons"]
+visible = false
 offset_left = 903.0
 offset_top = 526.0
 offset_right = 1017.0
@@ -322,6 +340,7 @@ texture_progress = ExtResource("14_soh27")
 tint_progress = Color(1, 0, 0.07450981, 0.6313726)
 
 [node name="LabelRetroEngPwr" type="Label" parent="Icons"]
+visible = false
 offset_left = 1067.25
 offset_top = 533.0
 offset_right = 1090.25
@@ -329,6 +348,7 @@ offset_bottom = 556.0
 text = "1"
 
 [node name="RetroEngineerProgress" type="TextureProgressBar" parent="Icons"]
+visible = false
 offset_left = 1035.0
 offset_top = 526.0
 offset_right = 1150.0
