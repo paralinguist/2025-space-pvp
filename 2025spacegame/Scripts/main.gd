@@ -2,6 +2,11 @@ extends Node2D
 
 var game_started = false
 
+func _ready() -> void:
+		for address in IP.get_local_addresses():
+			if (address.split('.').size() == 4) and address != "127.0.0.1":
+				$UI/Control/IPLabel.text += " " + address
+
 func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
 

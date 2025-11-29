@@ -312,11 +312,9 @@ func power_up(module):
 func take_damage(dmg:float, external=true):
 	if external and precognition:
 		if randi_range(0,1) and false:
-			print("dodging left")
 			position.x = left_size
 		else:
 			position.x = 1152-right_size-GRID_DISTANCE
-			print("dodging right")
 		precognition = false
 	else:
 		hp -= dmg*1
@@ -325,6 +323,7 @@ func take_damage(dmg:float, external=true):
 			UI.visible = true
 			UI.get_node("Control/End").visible = true
 			UI.get_node("Control/End/Label").text = win_message
+			UI.get_node("Control/IPLabel").visible = false
 			alive = false
 			for c in get_children():
 				if c is ShipModule:
@@ -373,7 +372,6 @@ func _on_overcharge_timer_timeout() -> void:
 	science_power = 1
 	weapon_power = 1
 	pilot_power = 1
-	print("overcharge finished")
 	self.get_parent().update_labels()
 
 func _on_special_timer_timeout() -> void:

@@ -41,6 +41,7 @@ func log_message(message: String) -> void:
 	print_rich(time + message + "\n")
 
 func _ready() -> void:
+
 	Scene = self.get_parent()
 	if tcp_server.listen(PORT) != OK:
 		log_message("Unable to start server.")
