@@ -2,9 +2,11 @@ extends Node2D
 
 var game_started = false
 
+var ip_ban_list = ["127", "169", "192"]
+
 func _ready() -> void:
 		for address in IP.get_local_addresses():
-			if (address.split('.').size() == 4) and address != "127.0.0.1":
+			if (address.split('.').size() == 4) and address.split('.')[0] not in ip_ban_list:
 				$UI/Control/IPLabel.text += " " + address
 
 func _on_restart_pressed() -> void:
