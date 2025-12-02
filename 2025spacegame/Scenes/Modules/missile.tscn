@@ -1,13 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://cv1qvu1uscksb"]
+[gd_scene load_steps=15 format=3 uid="uid://cv1qvu1uscksb"]
 
 [ext_resource type="Script" uid="uid://5d1sjbqxux7e" path="res://Scripts/shooter.gd" id="1_qhn7b"]
 [ext_resource type="Texture2D" uid="uid://dqxq6koyxcc68" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_016.png" id="2_ore0m"]
 [ext_resource type="Texture2D" uid="uid://cpxbudx4vymlk" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_020.png" id="3_4jknp"]
-[ext_resource type="Shader" uid="uid://dx2xsjxwts86j" path="res://Scenes/Modules/missile.gdshader" id="4_ore0m"]
+[ext_resource type="Shader" path="res://Scenes/Modules/missile.gdshader" id="4_ore0m"]
 [ext_resource type="Texture2D" uid="uid://nox7pu4eon6k" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_018.png" id="4_qhn7b"]
 [ext_resource type="Texture2D" uid="uid://bpigsecdx1o2t" path="res://Assets/PNG/Sprites X2/Station/spaceStation_005.png" id="5_gty6x"]
 [ext_resource type="Texture2D" uid="uid://d2wnivcsihaxs" path="res://Assets/PNG/Sprites X2/Effects/spaceEffects_009.png" id="7_4jknp"]
-[ext_resource type="AudioStream" uid="uid://bdsadxqcwjgvh" path="res://Assets/SFX/missile.mp3" id="8_qglw2"]
+[ext_resource type="AudioStream" uid="uid://2n0kui8w5ft3" path="res://Assets/SFX/missile.mp3" id="8_qglw2"]
+[ext_resource type="Texture2D" uid="uid://c866w07ithgrs" path="res://Assets/PNG/thomas/missiles_retro.png" id="9_gty6x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4jknp"]
 shader = ExtResource("4_ore0m")
@@ -98,5 +99,11 @@ process_material = SubResource("ParticleProcessMaterial_5ueyg")
 
 [node name="FiringSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_qglw2")
+
+[node name="Retro" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(19, -1.999999)
+scale = Vector2(0.13614339, 0.1361434)
+texture = ExtResource("9_gty6x")
 
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timeout"]

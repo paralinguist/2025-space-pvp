@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b7hp126j04b4b"]
 
 [ext_resource type="Script" uid="uid://h35ovikoq1pt" path="res://Scripts/ship.gd" id="1_x3s1d"]
-[ext_resource type="Texture2D" uid="uid://bl7mqcqq6i2lm" path="res://Assets/PNG/thomas/mainframeship retro.png" id="2_n6vk2"]
+[ext_resource type="Texture2D" uid="uid://dc4p0uuvaa60m" path="res://Assets/PNG/thomas/mainframeship retro.png" id="2_n6vk2"]
 [ext_resource type="AudioStream" uid="uid://di5s0axjsfts5" path="res://Assets/SFX/shield_up.mp3" id="3_5mm7q"]
 [ext_resource type="Texture2D" uid="uid://c15h7gc4pojbw" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_003.png" id="4_t2t7e"]
 [ext_resource type="AudioStream" uid="uid://cfp4je6nbguou" path="res://Assets/SFX/shield_down.mp3" id="4_x3s1d"]

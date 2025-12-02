@@ -55,7 +55,7 @@ func spawn() -> void:
 		if new_components[i] is Engineer:
 			if team == "retro":
 				new_components[i].set_retro()
-		elif new_components[i] is Shooter and new_components[i].weapon_type == "laser":
+		elif new_components[i] is Shooter:
 			if team == "retro":
 				new_components[i].set_retro()
 

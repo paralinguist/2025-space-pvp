@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc4p0uuvaa60m"
-path="res://.godot/imported/mainframeship retro.png-8156679a7a8f0f2fc9e0cbd378992b03.ctex"
+uid="uid://c866w07ithgrs"
+path="res://.godot/imported/missiles_retro.png-ca79839831f078f7ade7e568c1d8c6de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PNG/thomas/mainframeship retro.png"
-dest_files=["res://.godot/imported/mainframeship retro.png-8156679a7a8f0f2fc9e0cbd378992b03.ctex"]
+source_file="res://Assets/PNG/thomas/missiles_retro.png"
+dest_files=["res://.godot/imported/missiles_retro.png-ca79839831f078f7ade7e568c1d8c6de.ctex"]
 
 [params]
 

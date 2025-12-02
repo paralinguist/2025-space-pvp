@@ -132,28 +132,24 @@ text = "Start"
 [node name="RetroPilot" parent="RetroPortraits" instance=ExtResource("6_x033f")]
 visible = false
 position = Vector2(67, 582)
-scale = Vector2(0.16, 0.16)
 texture = ExtResource("7_733rx")
 speech_position = 2
 
 [node name="RetroScience" parent="RetroPortraits" instance=ExtResource("6_x033f")]
 visible = false
 position = Vector2(195, 582)
-scale = Vector2(0.16, 0.16)
 texture = ExtResource("8_kmsc6")
 speech_position = 2
 
 [node name="RetroWeapons" parent="RetroPortraits" instance=ExtResource("6_x033f")]
 visible = false
 position = Vector2(958, 582)
-scale = Vector2(0.16, 0.16)
 texture = ExtResource("9_ajhoy")
 speech_position = 0
 
 [node name="RetroEngineer" parent="RetroPortraits" instance=ExtResource("6_x033f")]
 visible = false
 position = Vector2(1086, 582)
-scale = Vector2(0.16, 0.16)
 texture = ExtResource("10_68bto")
 speech_position = 0
 
@@ -166,13 +162,11 @@ position = Vector2(67, 65)
 [node name="TechScience" parent="TechPortraits" instance=ExtResource("6_x033f")]
 visible = false
 position = Vector2(195, 65)
-scale = Vector2(0.16, 0.16)
 texture = ExtResource("11_bbo1y")
 
 [node name="TechWeapons" parent="TechPortraits" instance=ExtResource("6_x033f")]
 visible = false
 position = Vector2(958, 65)
-scale = Vector2(0.16, 0.16)
 texture = ExtResource("12_t5jks")
 speech_position = 1
 

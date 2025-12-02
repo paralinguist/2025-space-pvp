@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ds0evjgacxbtd"]
+[gd_scene load_steps=5 format=3 uid="uid://ds0evjgacxbtd"]
 
 [ext_resource type="Texture2D" uid="uid://c1tkxda1fgtwt" path="res://icon.svg" id="1_i3nxn"]
 [ext_resource type="Script" uid="uid://dxf8mwhg7ggpw" path="res://Scripts/portrait.gd" id="2_cuyhk"]
 [ext_resource type="PackedScene" uid="uid://drf32r033w3c0" path="res://Scenes/speech_bubble.tscn" id="2_e0mi8"]
+[ext_resource type="AudioStream" uid="uid://byv6uibj1s0nf" path="res://Assets/SFX/talking.mp3" id="4_kbur4"]
 
 [node name="Portrait" type="Sprite2D"]
 position = Vector2(442, 294)
@@ -26,6 +27,9 @@ one_shot = true
 [node name="FadeTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="TalkingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_kbur4")
 
 [connection signal="timeout" from="SpeechTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="FadeTimer" to="." method="_on_fade_timer_timeout"]

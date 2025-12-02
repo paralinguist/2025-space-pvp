@@ -4,6 +4,8 @@ var game_started = false
 
 var ip_ban_list = ["127", "169", "192"]
 
+var chat_rate = 10
+
 func _ready() -> void:
 		for address in IP.get_local_addresses():
 			if (address.split('.').size() == 4) and address.split('.')[0] not in ip_ban_list:
@@ -13,14 +15,21 @@ func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
 	game_started = true
 
+func chat(team, role, demeanour, text):
+	var portrait = $TechPortraits/TechPilot
+	if team == "tech":
+		if role == "science":
+			portrait = $TechPortraits/TechScience
+
+	portrait.speak(text)
+
 func _on_start_pressed() -> void:
 	$UI/Control/Start.visible = false
 	$UI.visible = false
 	game_started = true
 	$RetroShip.start()
 	$TechShip.start()
-	$TechPortraits/TechPilot.visible = true
-	$TechPortraits/TechPilot.speak("Let's gooooo!")
+	chat("tech", "science", "normal", "I will do science to them!")
 	for c in $Icons.get_children():
 		c.visible = true
 

@@ -12,13 +12,13 @@ func _ready() -> void:
 	$SpeechBubble.set_type(horiz_look_up[speech_position], vert_look_up[speech_position])
 	var siz = texture.get_size()*scale
 	$SpeechBubble.position = siz * pos_look_up[speech_position] + pos_look_up_offset[speech_position]
-	print($SpeechBubble.position)
-	speak("""HELLO THERE
-	HOW ARE YOU""")
+	
 
 func speak(words):
+	self.visible = true
 	$SpeechTimer.start()
 	$SpeechBubble.show_text(words)
+	$TalkingSound.play()
 	$SpeechBubble.visible = true
 
 
