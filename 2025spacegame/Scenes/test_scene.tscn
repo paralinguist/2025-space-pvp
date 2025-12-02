@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ccgemfou2b2ll"]
+[gd_scene load_steps=25 format=3 uid="uid://ccgemfou2b2ll"]
 
 [ext_resource type="PackedScene" uid="uid://b7hp126j04b4b" path="res://Scenes/test_ship.tscn" id="1_3dogw"]
 [ext_resource type="Script" uid="uid://bcr45us05q8fu" path="res://Scripts/main.gd" id="1_ak5v8"]
@@ -6,12 +6,18 @@
 [ext_resource type="Script" uid="uid://wmmjjexbv6tq" path="res://Scenes/websocket_server.gd" id="3_50ct6"]
 [ext_resource type="FontFile" uid="uid://ddcavhli5oec3" path="res://Assets/Tektur-Regular.ttf" id="4_hb2xm"]
 [ext_resource type="PackedScene" uid="uid://ds0evjgacxbtd" path="res://Scenes/portrait.tscn" id="6_x033f"]
+[ext_resource type="Texture2D" uid="uid://j45jemw6iy6c" path="res://Assets/PNG/Portraits/pilot_diesel.png" id="7_733rx"]
 [ext_resource type="Texture2D" uid="uid://de4ni4hyrprxc" path="res://Assets/PNG/Sprites X2/Missiles/spaceMissiles_029.png" id="7_rdbpf"]
 [ext_resource type="Texture2D" uid="uid://bwdg36wde3h1f" path="res://Assets/PNG/Sprites X2/Icons/tech_pilot_icon.png" id="8_4qg1e"]
+[ext_resource type="Texture2D" uid="uid://v6oeybcw46eo" path="res://Assets/PNG/Portraits/science_diesel.png" id="8_kmsc6"]
 [ext_resource type="Texture2D" uid="uid://c43bisnvi4vih" path="res://Assets/PNG/Sprites X2/Icons/tech_sci_icon.png" id="9_040rt"]
+[ext_resource type="Texture2D" uid="uid://3tl24f13vna1" path="res://Assets/PNG/Portraits/weapons_diesel.png" id="9_ajhoy"]
+[ext_resource type="Texture2D" uid="uid://dpmqlpa8ayjr1" path="res://Assets/PNG/Portraits/engineer_diesel.png" id="10_68bto"]
 [ext_resource type="Texture2D" uid="uid://c8mssxso8oecc" path="res://Assets/PNG/Sprites X2/Icons/tech_weap_icon.png" id="10_dhrl2"]
+[ext_resource type="Texture2D" uid="uid://dandka75ruj4i" path="res://Assets/PNG/Portraits/science_scifi.png" id="11_bbo1y"]
 [ext_resource type="Texture2D" uid="uid://dy68v0j5dc41l" path="res://Assets/PNG/Sprites X2/Icons/tech_eng_icon.png" id="11_i0miu"]
 [ext_resource type="Texture2D" uid="uid://c64pufbx6k53a" path="res://Assets/PNG/Sprites X2/Icons/retro_pilot_icon.png" id="12_6bfml"]
+[ext_resource type="Texture2D" uid="uid://dc6e4kycrlxr6" path="res://Assets/PNG/Portraits/weapons_scifi.png" id="12_t5jks"]
 [ext_resource type="Texture2D" uid="uid://jbilcve1p2wk" path="res://Assets/PNG/Sprites X2/Icons/retro_sci_icon.png" id="13_0g4ye"]
 [ext_resource type="Texture2D" uid="uid://b5ned6scithgo" path="res://Assets/PNG/Sprites X2/Icons/retro_weap_icon.png" id="14_soh27"]
 [ext_resource type="Texture2D" uid="uid://y62lqst6sxid" path="res://Assets/PNG/Sprites X2/Icons/retro_eng_icon.png" id="15_733rx"]
@@ -126,21 +132,29 @@ text = "Start"
 [node name="RetroPilot" parent="RetroPortraits" instance=ExtResource("6_x033f")]
 visible = false
 position = Vector2(67, 582)
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("7_733rx")
 speech_position = 2
 
 [node name="RetroScience" parent="RetroPortraits" instance=ExtResource("6_x033f")]
 visible = false
 position = Vector2(195, 582)
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("8_kmsc6")
 speech_position = 2
 
 [node name="RetroWeapons" parent="RetroPortraits" instance=ExtResource("6_x033f")]
 visible = false
 position = Vector2(958, 582)
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("9_ajhoy")
 speech_position = 0
 
 [node name="RetroEngineer" parent="RetroPortraits" instance=ExtResource("6_x033f")]
 visible = false
 position = Vector2(1086, 582)
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("10_68bto")
 speech_position = 0
 
 [node name="TechPortraits" type="Node2D" parent="."]
@@ -152,10 +166,14 @@ position = Vector2(67, 65)
 [node name="TechScience" parent="TechPortraits" instance=ExtResource("6_x033f")]
 visible = false
 position = Vector2(195, 65)
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("11_bbo1y")
 
 [node name="TechWeapons" parent="TechPortraits" instance=ExtResource("6_x033f")]
 visible = false
 position = Vector2(958, 65)
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("12_t5jks")
 speech_position = 1
 
 [node name="TechEngineer" parent="TechPortraits" instance=ExtResource("6_x033f")]

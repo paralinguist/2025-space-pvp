@@ -85,7 +85,7 @@ func get_message(peer_id: int) -> String:
 		if ship_instruction.parse(message) == OK:
 			var instruction = ship_instruction.data
 			if instruction["action"] == "join":
-				print(instruction["team"] + " " + instruction["role"] + " has joined!" + "(API:" + instruction["version"] + ")")
+				log_message(instruction["team"] + " " + instruction["role"] + " has joined!" + "(API:" + instruction["version"] + ")")
 				clients[peer_id] = {"team":instruction["team"], "role":instruction["role"]}
 				Scene.show_module(instruction["role"], instruction["team"])
 				emit_signal("new_client", clients[peer_id])
