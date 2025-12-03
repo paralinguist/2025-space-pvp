@@ -58,6 +58,8 @@ func spawn() -> void:
 		elif new_components[i] is Shooter:
 			if team == "retro":
 				new_components[i].set_retro()
+			else:
+				new_components[i].set_tech()
 
 func start():
 	randomize()

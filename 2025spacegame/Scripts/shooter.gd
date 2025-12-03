@@ -20,6 +20,13 @@ func set_retro():
 	$Gun.visible = false
 	$Exhaust.visible = false
 
+func set_tech():
+	$Tech.visible = true
+	$Body.visible = false
+	$Top2.visible = false
+	$Gun.visible = false
+	$Exhaust.visible = false
+	
 func shoot(num_shots = 1):
 	shots_left = num_shots - 1
 	_shoot()
