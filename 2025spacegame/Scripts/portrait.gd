@@ -12,7 +12,9 @@ func _ready() -> void:
 	$SpeechBubble.set_type(horiz_look_up[speech_position], vert_look_up[speech_position])
 	var siz = texture.get_size()*scale
 	$SpeechBubble.position = siz * pos_look_up[speech_position] + pos_look_up_offset[speech_position]
-	
+
+func shift_bubble(direction, location):
+	$SpeechBubble.set_type(direction, location)
 
 func speak(words):
 	self.visible = true

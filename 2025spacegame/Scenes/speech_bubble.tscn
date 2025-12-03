@@ -58,7 +58,6 @@ anti_aliasing = false
 [node name="SpeechBubble" type="Label"]
 z_index = 3
 texture_filter = 2
-anchors_preset = -1
 grow_horizontal = 0
 label_settings = SubResource("LabelSettings_5ioj6")
 script = ExtResource("2_4folf")

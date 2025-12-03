@@ -53,7 +53,7 @@ scale = Vector2(0.615, -0.615)
 UI = NodePath("../UI")
 win_message = "Retro Ship Survived"
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Spaaaaace" type="Sprite2D" parent="."]
 z_index = -4096
 position = Vector2(566, 412)
 scale = Vector2(0.8, 0.8)

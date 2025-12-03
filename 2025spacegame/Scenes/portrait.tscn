@@ -12,7 +12,6 @@ script = ExtResource("2_cuyhk")
 speech_position = 3
 
 [node name="SpeechBubble" parent="." instance=ExtResource("2_e0mi8")]
-anchors_preset = 0
 offset_left = -64.0
 offset_top = -64.0
 offset_right = -63.0

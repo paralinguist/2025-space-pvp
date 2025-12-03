@@ -7,9 +7,13 @@ var ip_ban_list = ["127", "169", "192"]
 var chat_rate = 10
 
 func _ready() -> void:
-		for address in IP.get_local_addresses():
-			if (address.split('.').size() == 4) and address.split('.')[0] not in ip_ban_list:
-				$UI/Control/IPLabel.text += " " + address
+	$TechPortraits/TechEngineer.shift_bubble("Right", "Bottom")
+	$RetroPortraits/RetroEngineer.shift_bubble("Right", "Top")
+	$TechPortraits/TechWeapons.shift_bubble("Right", "Bottom")
+	$RetroPortraits/RetroWeapons.shift_bubble("Right", "Top")
+	for address in IP.get_local_addresses():
+		if (address.split('.').size() == 4) and address.split('.')[0] not in ip_ban_list:
+			$UI/Control/IPLabel.text += " " + address
 
 func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()
@@ -18,9 +22,23 @@ func _on_restart_pressed() -> void:
 func chat(team, role, demeanour, text):
 	var portrait = $TechPortraits/TechPilot
 	if team == "tech":
-		if role == "science":
+		if role == "pilot":
+			portrait = $TechPortraits/TechPilot
+		elif role == "science":
 			portrait = $TechPortraits/TechScience
-
+		elif role == "weapons":
+			portrait = $TechPortraits/TechWeapons
+		elif role == "engineer":
+			portrait = $TechPortraits/TechEngineer
+	else:
+		if role == "pilot":
+			portrait = $RetroPortraits/RetroPilot
+		elif role == "science":
+			portrait = $RetroPortraits/RetroScience
+		elif role == "weapons":
+			portrait = $RetroPortraits/RetroWeapons
+		elif role == "engineer":
+			portrait = $RetroPortraits/RetroEngineer
 	portrait.speak(text)
 
 func _on_start_pressed() -> void:
@@ -29,7 +47,25 @@ func _on_start_pressed() -> void:
 	game_started = true
 	$RetroShip.start()
 	$TechShip.start()
-	chat("tech", "science", "normal", "I will do science to them!")
+	var start_chat = randi_range(1,8)
+	if start_chat == 1:
+		chat("tech", "pilot", "normal", "Ace pilot reporting for duty!")
+	elif start_chat == 2:
+		chat("tech", "science", "normal", "I will do science to them!")
+	elif start_chat == 3:
+		chat("tech", "weapons", "normal", "Pew pew pew!")
+	elif start_chat == 4:
+		chat("tech", "engineer", "normal", "Power systems holding!")
+	elif start_chat == 5:
+		chat("retro", "pilot", "normal", "I am a leaf on the wind.")
+	elif start_chat == 6:
+		chat("retro", "science", "normal", "The ship AI isn't trying to kill us. Yet.")
+	elif start_chat == 7:
+		chat("retro", "weapons", "normal", "Pointing lasers AWAY from us this time.")
+	elif start_chat == 8:
+		chat("retro", "engineer", "normal", "I am plugging things into other things!")	
+			
+		
 	for c in $Icons.get_children():
 		c.visible = true
 
