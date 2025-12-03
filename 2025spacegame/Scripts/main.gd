@@ -93,28 +93,28 @@ func _process(_delta: float) -> void:
 	if is_instance_valid($TechShip) and is_instance_valid($RetroShip):
 		$Icons/LabelTechMissiles.text = ": " + str($TechShip.missiles)
 		$Icons/LabelRetroMissiles.text = ": " + str($RetroShip.missiles)
-		if $TechShip.pilot_cooldown:
+		if is_instance_valid($TechShip) and $TechShip.pilot_cooldown:
 			$Icons/TechPilotProgress.max_value = $TechShip/PilotTimer.wait_time
 			$Icons/TechPilotProgress.value = $TechShip/PilotTimer.time_left
-		if $TechShip.science_cooldown:
+		if is_instance_valid($TechShip) and $TechShip.science_cooldown:
 			$Icons/TechScienceProgress.max_value = $TechShip/ScienceTimer.wait_time
 			$Icons/TechScienceProgress.value = $TechShip/ScienceTimer.time_left
-		if $TechShip.weapons_cooldown:
+		if is_instance_valid($TechShip) and $TechShip.weapons_cooldown:
 			$Icons/TechWeaponsProgress.max_value = $TechShip/WeaponsTimer.wait_time
 			$Icons/TechWeaponsProgress.value = $TechShip/WeaponsTimer.time_left
-		if $TechShip.overcharged:
+		if is_instance_valid($TechShip) and $TechShip.overcharged:
 			$Icons/TechEngineerProgress.max_value = $TechShip/OverchargeTimer.wait_time
 			$Icons/TechEngineerProgress.value = $TechShip/OverchargeTimer.time_left
-		if $RetroShip.pilot_cooldown:
+		if is_instance_valid($RetroShip) and $RetroShip.pilot_cooldown:
 			$Icons/RetroPilotProgress.max_value = $RetroShip/PilotTimer.wait_time
 			$Icons/RetroPilotProgress.value = $RetroShip/PilotTimer.time_left
-		if $RetroShip.science_cooldown:
+		if is_instance_valid($RetroShip) and $RetroShip.science_cooldown:
 			$Icons/RetroScienceProgress.max_value = $RetroShip/ScienceTimer.wait_time
 			$Icons/RetroScienceProgress.value = $RetroShip/ScienceTimer.time_left
-		if $RetroShip.weapons_cooldown:
+		if is_instance_valid($RetroShip) and $RetroShip.weapons_cooldown:
 			$Icons/RetroWeaponsProgress.max_value = $RetroShip/WeaponsTimer.wait_time
 			$Icons/RetroWeaponsProgress.value = $RetroShip/WeaponsTimer.time_left
-		if $RetroShip.overcharged:
+		if is_instance_valid($RetroShip) and $RetroShip.overcharged:
 			$Icons/RetroEngineerProgress.max_value = $RetroShip/OverchargeTimer.wait_time
 			$Icons/RetroEngineerProgress.value = $RetroShip/OverchargeTimer.time_left
 

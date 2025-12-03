@@ -107,12 +107,12 @@ func get_message(peer_id: int) -> String:
 				elif instruction["action"] == "shield":
 					ship.add_shield()
 				elif instruction["action"] == "consume":
+					print(instruction["team"] +  " consume")
 					ship.consume_shield()
 				elif instruction["action"] == "craft":
 					print("Crafting missiles")
 					ship.add_missiles(2)
 				elif instruction["action"] == "power":
-					print("Eng power instruction: " + instruction["action"] + " " + instruction["direction"] + " " + instruction["target"])
 					if instruction["direction"] == "down":
 						ship.power_down(instruction["target"])
 					else:
@@ -127,12 +127,10 @@ func get_message(peer_id: int) -> String:
 					ship.precognition = true
 				elif instruction["action"] == "overcharge":
 					if not ship.overcharged:
-						print("Eng bonus: overcharge")
 						ship.overcharge(2)
 					else:
 						print("Can't overcharge twice")
 				elif instruction["action"] == "special":
-
 					ship.special(instruction["role"])
 			else:
 				print("Game not started, not accepting commands")
