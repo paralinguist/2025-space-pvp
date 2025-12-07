@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bawyb4qw2s7et"]
+[gd_scene load_steps=15 format=3 uid="uid://bawyb4qw2s7et"]
 
 [ext_resource type="Script" uid="uid://dmj6tbrpfkdtn" path="res://Scripts/science.gd" id="1_hgx88"]
 [ext_resource type="Texture2D" uid="uid://dqxq6koyxcc68" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_016.png" id="1_tpbaf"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://cpxbudx4vymlk" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_020.png" id="3_tpbaf"]
 [ext_resource type="Texture2D" uid="uid://bpigsecdx1o2t" path="res://Assets/PNG/Sprites X2/Station/spaceStation_005.png" id="4_5tovd"]
 [ext_resource type="Texture2D" uid="uid://d2wnivcsihaxs" path="res://Assets/PNG/Sprites X2/Effects/spaceEffects_009.png" id="7_5tovd"]
+[ext_resource type="Texture2D" uid="uid://bvp6q5bsbbiro" path="res://Assets/PNG/thomas/science_retro.png" id="8_xqlsx"]
+[ext_resource type="Texture2D" uid="uid://drj3i7fx2orkm" path="res://Assets/PNG/thomas/tech_core.png" id="9_e7p8w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5tovd"]
 shader = ExtResource("2_hgx88")
@@ -78,3 +80,15 @@ shape = SubResource("RectangleShape2D_lpx0w")
 emitting = false
 texture = ExtResource("7_5tovd")
 process_material = SubResource("ParticleProcessMaterial_e7p8w")
+
+[node name="Retro" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-0.43606424, 0.6562495)
+scale = Vector2(0.115289934, 0.115289934)
+texture = ExtResource("8_xqlsx")
+
+[node name="Tech" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-3.000002, 1)
+scale = Vector2(0.10468493, 0.10468492)
+texture = ExtResource("9_e7p8w")

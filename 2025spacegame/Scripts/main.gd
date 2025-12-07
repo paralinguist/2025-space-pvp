@@ -6,16 +6,24 @@ var ip_ban_list = ["127", "169", "192"]
 
 var chat_rate = 10
 
+var tech_music = load("res://Assets/music/tech_theme.mp3")
+var retro_music = load("res://Assets/music/retro_theme.mp3")
+
 func _ready() -> void:
 	$TechPortraits/TechEngineer.shift_bubble("Right", "Bottom")
 	$RetroPortraits/RetroEngineer.shift_bubble("Right", "Top")
 	$TechPortraits/TechWeapons.shift_bubble("Right", "Bottom")
 	$RetroPortraits/RetroWeapons.shift_bubble("Right", "Top")
+	$TechPortraits/TechPilot.shift_bubble("Left", "Bottom")
+	$RetroPortraits/RetroPilot.shift_bubble("Left", "Bottom")
+	$TechPortraits/TechScience.shift_bubble("Left", "Bottom")
+	$RetroPortraits/RetroScience.shift_bubble("Left", "Bottom")
 	for address in IP.get_local_addresses():
 		if (address.split('.').size() == 4) and address.split('.')[0] not in ip_ban_list:
 			$UI/Control/IPLabel.text += " " + address
 
 func _on_restart_pressed() -> void:
+	play_music()
 	get_tree().reload_current_scene()
 	game_started = true
 
@@ -41,7 +49,15 @@ func chat(team, role, demeanour, text):
 			portrait = $RetroPortraits/RetroEngineer
 	portrait.speak(text)
 
+func play_music():
+	if randi_range(1,2) == 1:
+		$MusicPlayer.stream = tech_music
+	else:
+		$MusicPlayer.stream = retro_music
+	$MusicPlayer.play()
+
 func _on_start_pressed() -> void:
+	play_music()
 	$UI/Control/Start.visible = false
 	$UI.visible = false
 	game_started = true

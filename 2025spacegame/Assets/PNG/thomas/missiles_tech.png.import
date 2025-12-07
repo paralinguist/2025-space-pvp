@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djr3mpsafuhea"
-path="res://.godot/imported/weapon_tech.png-50f14c163b998591b1e8551a9a923244.ctex"
+uid="uid://h1bjrh2ci4f8"
+path="res://.godot/imported/missiles_tech.png-8ab6928c04cfe57faf22b58a11c2af45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PNG/thomas/weapon_tech.png"
-dest_files=["res://.godot/imported/weapon_tech.png-50f14c163b998591b1e8551a9a923244.ctex"]
+source_file="res://Assets/PNG/thomas/missiles_tech.png"
+dest_files=["res://.godot/imported/missiles_tech.png-8ab6928c04cfe57faf22b58a11c2af45.ctex"]
 
 [params]
 

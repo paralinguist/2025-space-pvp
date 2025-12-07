@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djr3mpsafuhea"
-path="res://.godot/imported/weapon_tech.png-50f14c163b998591b1e8551a9a923244.ctex"
+uid="uid://5j2rbusday0r"
+path="res://.godot/imported/techship.png-a4fec242a78c3c5176248574924b2032.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/PNG/thomas/weapon_tech.png"
-dest_files=["res://.godot/imported/weapon_tech.png-50f14c163b998591b1e8551a9a923244.ctex"]
+source_file="res://Assets/PNG/thomas/techship.png"
+dest_files=["res://.godot/imported/techship.png-a4fec242a78c3c5176248574924b2032.ctex"]
 
 [params]
 

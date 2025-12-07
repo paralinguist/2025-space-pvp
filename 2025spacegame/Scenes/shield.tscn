@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cya3cx821acrl"]
+[gd_scene load_steps=5 format=3 uid="uid://cya3cx821acrl"]
 
 [ext_resource type="Texture2D" uid="uid://cbs8s0iey7num" path="res://Assets/PNG/Sprites X2/Station/spaceStation_024.png" id="1_17xpe"]
 [ext_resource type="Script" uid="uid://bpqdoj3ox80o8" path="res://Scripts/shield.gd" id="1_oux8c"]
+[ext_resource type="Texture2D" uid="uid://ccqfcpy6gw4sy" path="res://Assets/PNG/thomas/new_shield.png" id="3_afmmn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oux8c"]
 size = Vector2(328, 56)
@@ -13,6 +14,7 @@ collision_mask = 2
 script = ExtResource("1_oux8c")
 
 [node name="Glow" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 position = Vector2(-7, 0)
 scale = Vector2(0.25, 0.25)
@@ -21,6 +23,7 @@ region_enabled = true
 region_rect = Rect2(0, 12, 56, 55.7871)
 
 [node name="Glow2" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 position = Vector2(7, 0)
 scale = Vector2(0.25, 0.25)
@@ -30,6 +33,7 @@ region_enabled = true
 region_rect = Rect2(0, 12, 56, 55.7871)
 
 [node name="Glow3" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 position = Vector2(-34, 0)
 scale = Vector2(0.25, 0.25)
@@ -38,6 +42,7 @@ region_enabled = true
 region_rect = Rect2(0, 12, 56, 55.7871)
 
 [node name="Glow4" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 position = Vector2(-20, 0)
 scale = Vector2(0.25, 0.25)
@@ -47,6 +52,7 @@ region_enabled = true
 region_rect = Rect2(0, 12, 56, 55.7871)
 
 [node name="Glow5" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 position = Vector2(20, 0)
 scale = Vector2(0.25, 0.25)
@@ -55,6 +61,7 @@ region_enabled = true
 region_rect = Rect2(0, 12, 56, 55.7871)
 
 [node name="Glow6" type="Sprite2D" parent="."]
+visible = false
 z_index = -1
 position = Vector2(34, 0)
 scale = Vector2(0.25, 0.25)
@@ -66,3 +73,8 @@ region_rect = Rect2(0, 12, 56, 55.7871)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.25, 0.25)
 shape = SubResource("RectangleShape2D_oux8c")
+
+[node name="new_shield" type="Sprite2D" parent="."]
+position = Vector2(2.3333333, -1.9999981)
+scale = Vector2(0.5878906, 1.6064454)
+texture = ExtResource("3_afmmn")

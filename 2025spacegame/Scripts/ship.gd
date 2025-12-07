@@ -52,27 +52,21 @@ func spawn() -> void:
 		add_child(new_components[i])
 		new_components[i].position = Vector2(52*i-104, 0)
 		new_components[i].visible = false
-		if new_components[i] is Engineer:
-			if team == "retro":
-				new_components[i].set_retro()
-		elif new_components[i] is Shooter:
-			if team == "retro":
-				new_components[i].set_retro()
-			else:
-				new_components[i].set_tech()
+		if team == "retro":
+			new_components[i].set_retro()
+		else:
+			new_components[i].set_tech()
 
 func start():
 	randomize()
-	$LeftWing.visible = true
-	$RightWing.visible = true
 	$HPBar.visible = true
 	for c in get_children():
 		if c is ShipModule:
 			c.visible = true
 	if team == "retro":
 		$Retro.visible = true
-		$LeftWing.visible = false
-		$RightWing.visible = false
+	else:
+		$Tech.visible = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -95,6 +89,11 @@ func move(dir:int):
 			add_shield(true)
 		if dodge_power:
 			overcharge(1)
+
+func missile_barrage():
+	for c in get_children():
+			if c is Shooter and not c.deactivated and c.weapon_type in "missile":
+				c.shoot(3)
 
 func shoot(weapon:String, external=false):
 	if external:
@@ -316,12 +315,21 @@ func power_up(module):
 
 func take_damage(dmg:float, external=true):
 	if external and precognition:
+		if randi_range(1,2) == 1:
+			self.get_parent().chat(team, "pilot", "happy", "Not today!")
+		else:
+			self.get_parent().chat(team, "pilot", "happy", "You'll have to shoot better than that!")
 		if randi_range(0,1) and false:
 			position.x = left_size
 		else:
 			position.x = 1152-right_size-GRID_DISTANCE
 		precognition = false
 	else:
+		if randi_range(1,6) == 1:
+			if randi_range(1,2) == 1:
+				self.get_parent().chat(team, "engineer", "sad", "Uh, if we could not get hit again, that'd be great.")
+			else:
+				self.get_parent().chat(team, "pilot", "sad", "Okay, I should steer AWAY from the enemy fire next time.")
 		hp -= dmg*1
 		if hp <= 0.0:
 			get_parent().play_explosion()

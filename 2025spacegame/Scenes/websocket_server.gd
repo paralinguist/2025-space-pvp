@@ -98,21 +98,31 @@ func get_message(peer_id: int) -> String:
 				if clients[peer_id]["team"] == "retro":
 					ship = RetroShip
 				if instruction["action"] == "move":
+					if randi_range(1,15) == 1:
+						Scene.chat(instruction["team"], "pilot", "normal", "Attempting evasion!")
 					if instruction["direction"] == "right":
 						ship.move(1)
 					else:
 						ship.move(-1)
 				elif instruction["action"] == "shoot":
+					if randi_range(1,15) == 1:
+						Scene.chat(instruction["team"], "weapons", "normal", "Taste my weapons!")
 					ship.shoot(instruction["weapon_id"])
 				elif instruction["action"] == "shield":
+					if randi_range(1,8) == 1:
+						Scene.chat(instruction["team"], "science", "normal", "Shields... holding...")
 					ship.add_shield()
 				elif instruction["action"] == "consume":
-					print(instruction["team"] +  " consume")
+					if randi_range(1,3) == 1:
+						Scene.chat(instruction["team"], "science", "normal", "Shield goes down, special goes up!")
 					ship.consume_shield()
 				elif instruction["action"] == "craft":
-					print("Crafting missiles")
-					ship.add_missiles(2)
+					if randi_range(1,3) == 1:
+						Scene.chat(instruction["team"], "weapon", "normal", "Boom goes the dynamite!")
+					ship.missile_barrage()
 				elif instruction["action"] == "power":
+					if randi_range(1,15) == 1:
+						Scene.chat(instruction["team"], "engineer", "normal", "Rerouting power")
 					if instruction["direction"] == "down":
 						ship.power_down(instruction["target"])
 					else:
@@ -120,12 +130,23 @@ func get_message(peer_id: int) -> String:
 					Scene.update_labels()
 				elif instruction["action"] == "emp":
 					if instruction["team"] == "retro":
+						if randi_range(1,3) == 1:
+							Scene.chat(instruction["team"], "science", "happy", "Oh dang, the EMP is working!")
 						TechShip.emp_hit()
 					else:
+						if randi_range(1,3) == 1:
+							Scene.chat(instruction["team"], "science", "normal", "Deploying EMP.")
 						RetroShip.emp_hit()
 				elif instruction["action"] == "precognition":
+					if randi_range(1,3) == 1:
+						if instruction["team"] == "tech":
+							Scene.chat(instruction["team"], "pilot", "happy", "I can see the future!")
+						else:
+							Scene.chat(instruction["team"], "pilot", "happy", "Dodging things before they even shoot!")
 					ship.precognition = true
 				elif instruction["action"] == "overcharge":
+					if randi_range(1,15) == 1:
+						Scene.chat(instruction["team"], "engineer", "normal", "Overcharge engaged!")
 					if not ship.overcharged:
 						ship.overcharge(2)
 					else:

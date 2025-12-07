@@ -6,7 +6,7 @@ port = 9876
 #Roles: weapons, pilot, science, engineer
 role = "weapons"
 #Teams: tech, retro
-team = "retro"
+team = "tech"
 weapon_id = 1
 
 space_api.connect(role, team, ip, port)

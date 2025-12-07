@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://5d1sjbqxux7e" path="res://Scripts/shooter.gd" id="1_ffxur"]
 [ext_resource type="Texture2D" uid="uid://dqxq6koyxcc68" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_016.png" id="1_rr6fe"]
-[ext_resource type="Texture2D" uid="uid://crysmd3wcj11j" path="res://Assets/PNG/thomas/weapon_tech.png" id="2_h76l1"]
+[ext_resource type="Texture2D" uid="uid://djr3mpsafuhea" path="res://Assets/PNG/thomas/weapon_tech.png" id="2_h76l1"]
 [ext_resource type="Texture2D" uid="uid://b1f2tf2bv7t7b" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_002.png" id="2_rr6fe"]
 [ext_resource type="Texture2D" uid="uid://brsqbf00knqed" path="res://Assets/PNG/thomas/weapon_retro.png" id="3_dkqqs"]
 [ext_resource type="Texture2D" uid="uid://cpxbudx4vymlk" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_020.png" id="3_ffxur"]
@@ -35,7 +35,7 @@ particles = NodePath("Explosion")
 
 [node name="Tech" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(5.999998, -17)
+position = Vector2(0.9999995, -16)
 scale = Vector2(0.2623967, 0.2623967)
 texture = ExtResource("2_h76l1")
 

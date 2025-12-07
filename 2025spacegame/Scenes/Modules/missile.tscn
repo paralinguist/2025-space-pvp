@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cv1qvu1uscksb"]
+[gd_scene load_steps=16 format=3 uid="uid://cv1qvu1uscksb"]
 
 [ext_resource type="Script" uid="uid://5d1sjbqxux7e" path="res://Scripts/shooter.gd" id="1_qhn7b"]
 [ext_resource type="Texture2D" uid="uid://dqxq6koyxcc68" path="res://Assets/PNG/Sprites X2/Rocket parts/spaceRocketParts_016.png" id="2_ore0m"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://d2wnivcsihaxs" path="res://Assets/PNG/Sprites X2/Effects/spaceEffects_009.png" id="7_4jknp"]
 [ext_resource type="AudioStream" uid="uid://2n0kui8w5ft3" path="res://Assets/SFX/missile.mp3" id="8_qglw2"]
 [ext_resource type="Texture2D" uid="uid://c866w07ithgrs" path="res://Assets/PNG/thomas/missiles_retro.png" id="9_gty6x"]
+[ext_resource type="Texture2D" uid="uid://h1bjrh2ci4f8" path="res://Assets/PNG/thomas/missiles_tech.png" id="10_5ueyg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4jknp"]
 shader = ExtResource("4_ore0m")
@@ -107,5 +108,9 @@ scale = Vector2(0.13614339, 0.1361434)
 texture = ExtResource("9_gty6x")
 
 [node name="Tech" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(7.499999, -9.871906)
+scale = Vector2(0.24380165, 0.24380165)
+texture = ExtResource("10_5ueyg")
 
 [connection signal="timeout" from="ShotTimer" to="." method="_on_shot_timeout"]
