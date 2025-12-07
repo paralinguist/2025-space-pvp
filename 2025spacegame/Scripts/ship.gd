@@ -91,9 +91,11 @@ func move(dir:int):
 			overcharge(1)
 
 func missile_barrage():
-	for c in get_children():
-			if c is Shooter and not c.deactivated and c.weapon_type in "missile":
-				c.shoot(3)
+	if missiles >= 3:
+		for c in get_children():
+				if c is Shooter and not c.deactivated and c.weapon_type in "missile":
+					c.shoot(3)
+		missiles -= 3
 
 func shoot(weapon:String, external=false):
 	if external:
@@ -339,12 +341,15 @@ func take_damage(dmg:float, external=true):
 			UI.get_node("Control/IPLabel").visible = false
 			get_parent().game_started = false
 			alive = false
+			$Retro.visible = false
+			$Tech.visible = false
 			for c in get_children():
 				if c is ShipModule:
 					c.die()
 				else:
-					c.queue_free()
-			set_process(false)
+					pass
+					#c.queue_free()
+			#set_process(false)
 
 func overcharge(amount, external = false):
 	$PowerUpSound.play()

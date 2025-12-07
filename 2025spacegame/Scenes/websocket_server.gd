@@ -98,7 +98,9 @@ func get_message(peer_id: int) -> String:
 				if clients[peer_id]["team"] == "retro":
 					ship = RetroShip
 				if instruction["action"] == "move":
-					if randi_range(1,15) == 1:
+					var chatmode = randi_range(1,15)
+					if chatmode == 1:
+						print(chatmode)
 						Scene.chat(instruction["team"], "pilot", "normal", "Attempting evasion!")
 					if instruction["direction"] == "right":
 						ship.move(1)
@@ -118,7 +120,7 @@ func get_message(peer_id: int) -> String:
 					ship.consume_shield()
 				elif instruction["action"] == "craft":
 					if randi_range(1,3) == 1:
-						Scene.chat(instruction["team"], "weapon", "normal", "Boom goes the dynamite!")
+						Scene.chat(instruction["team"], "weapons", "normal", "Boom goes the dynamite!")
 					ship.missile_barrage()
 				elif instruction["action"] == "power":
 					if randi_range(1,15) == 1:
